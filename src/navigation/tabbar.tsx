@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
+import { Header } from 'src/components/organisms/header'
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
@@ -12,7 +13,14 @@ const Tab = createBottomTabNavigator()
 
 export const TabBar = () => {
   return (
-    <Tab.Navigator initialRouteName={Routes.CharacterScreen}>
+    <Tab.Navigator
+      initialRouteName={Routes.CharacterScreen}
+      screenOptions={{
+        header: (props) => <Header {...props} />,
+        headerStyle: {
+          height: 96,
+        },
+      }}>
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}
