@@ -1,0 +1,31 @@
+query getCharacters($options: FilterCharacter, $i: Int) {
+  characters(filter: $options, page: $i) {
+    results {
+      name
+      status
+      image
+    }
+  }
+}
+
+query getCharacter($id: ID!) {
+  character(id: $id) {
+    image
+    status
+    gender
+    name
+    species
+    origin {
+      name
+    }
+    type
+    location {
+      name
+    }
+    episode {
+      name
+      created
+      episode
+    }
+  }
+}
