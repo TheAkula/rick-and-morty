@@ -3,23 +3,25 @@ import { ListRenderItem } from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
 
-import { StyledCharactersList } from './styled'
-
-export interface Character {
-  id: number
-  name: string
-  status: string
-  image: string
-}
+import { CharactersContainer, StyledCharactersList } from './styled'
 
 interface CharactersProps {
-  characters: Character[]
+  characters: any
 }
 
 export const Characters: React.FC<CharactersProps> = ({ characters }) => {
   const renderItem: ListRenderItem<any> = ({ item }) => (
-    <CharacterCard {...item} />
+    <CharacterCard {...item} key={item.id} />
   )
 
-  return <StyledCharactersList data={characters} renderItem={renderItem} />
+  return (
+    <CharactersContainer>
+      <StyledCharactersList
+        data={characters as any}
+        renderItem={renderItem}
+        numColumns={2}
+        keyExtractor={(item, index) => (item as { id: string }).id}
+      />
+    </CharactersContainer>
+  )
 }

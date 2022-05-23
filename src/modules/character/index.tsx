@@ -19,8 +19,14 @@ export const CharacterScreen = () => {
   }
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Characters} />
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: '#fff' },
+      }}>
+      <Stack.Screen name="Home">
+        {() => <Characters characters={data?.characters?.results} />}
+      </Stack.Screen>
     </Stack.Navigator>
   )
 }

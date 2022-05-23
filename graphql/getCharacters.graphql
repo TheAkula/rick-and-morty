@@ -1,6 +1,7 @@
 query getCharacters($options: FilterCharacter, $i: Int) {
   characters(filter: $options, page: $i) {
     results {
+      id
       name
       status
       image
