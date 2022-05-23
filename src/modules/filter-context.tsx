@@ -6,12 +6,12 @@ import {
   FilterLocation,
 } from 'src/generated/graphql'
 
-type Fields = FilterLocation | FilterEpisode | FilterCharacter
+export type Fields = FilterLocation | FilterEpisode | FilterCharacter
 
 interface InitialState {
   type: string | null
   fields: Fields
-  updateFields: (k: keyof Fields, v: unknown) => void
+  updateField: (k: string, v: unknown) => void
   updateType: (t: string) => void
   clearFields: () => void
 }
@@ -19,7 +19,7 @@ interface InitialState {
 interface FilterAction {
   type: 'SET_FIELD' | 'CLEAR'
   payload?: {
-    key: keyof Fields
+    key: string
     value: unknown
   }
 }
@@ -27,7 +27,7 @@ interface FilterAction {
 const initialState: InitialState = {
   type: null,
   fields: {},
-  updateFields: () => undefined,
+  updateField: () => undefined,
   updateType: () => undefined,
   clearFields: () => undefined,
 }
@@ -55,7 +55,7 @@ export const FilterContextProvider = ({
   const [fields, dispatch] = useReducer(reducer, {})
   const [type, setType] = useState<string | null>(null)
 
-  const updateFields = (key: keyof Fields, value: unknown) => {
+  const updateField = (key: string, value: unknown) => {
     dispatch({ type: 'SET_FIELD', payload: { key, value } })
   }
 
@@ -69,7 +69,7 @@ export const FilterContextProvider = ({
 
   return (
     <FilterContext.Provider
-      value={{ fields, updateFields, type, updateType, clearFields }}>
+      value={{ fields, updateField, type, updateType, clearFields }}>
       {children}
     </FilterContext.Provider>
   )
