@@ -1,16 +1,23 @@
 import React from 'react'
 import { useLinkTo } from '@react-navigation/native'
 
+import { useFilterContext } from 'src/modules/filter-context'
 import { colors } from 'src/theme/colors'
 import { StyledText } from 'src/theme/styles'
 
 import { FilterContainer } from './styled'
 
-export const FilterButton = () => {
+interface FilterButtonProps {
+  type: string
+}
+
+export const FilterButton: React.FC<FilterButtonProps> = ({ type }) => {
   const linkTo = useLinkTo()
+  const { updateType } = useFilterContext()
 
   const onPressed = () => {
-    linkTo('/Filter')
+    updateType(type)
+    linkTo('/Filter/')
   }
 
   return (

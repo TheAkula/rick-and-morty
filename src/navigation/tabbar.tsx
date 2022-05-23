@@ -26,6 +26,7 @@ export const TabBar = () => {
         component={CharacterScreen}
         options={{
           headerTitle: 'Characters',
+          title: 'characters',
           tabBarIcon: ({ focused }) => <View />,
         }}
       />
@@ -33,6 +34,8 @@ export const TabBar = () => {
         name={Routes.LocationScreen}
         component={LocationScreen}
         options={{
+          headerTitle: 'Location',
+          title: 'location',
           tabBarIcon: ({ focused }) => <View />,
         }}
       />
@@ -42,6 +45,7 @@ export const TabBar = () => {
         component={EpisodeScreen}
         options={{
           headerTitle: 'Episode',
+          title: 'episode',
           tabBarIcon: ({ focused }) => <View />,
         }}
       />
