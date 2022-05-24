@@ -7,6 +7,7 @@ import { useFilterContext } from 'src/modules/filter-context'
 import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { Button } from 'src/ui/button'
+import { isEmptyObject } from 'src/utils/isEmptyObject'
 
 import {
   FilterHeaderTitle,
@@ -17,7 +18,7 @@ import {
 
 export const FilterHeader = ({ route, options }: NativeStackHeaderProps) => {
   const title = getHeaderTitle(options, route.name)
-  const { appliedFields, clearFields, apply } = useFilterContext()
+  const { fields, clearFields, apply } = useFilterContext()
   const navigation = useNavigation()
 
   const onClearHandler = () => {
@@ -33,7 +34,7 @@ export const FilterHeader = ({ route, options }: NativeStackHeaderProps) => {
     <StyledFilterHeader>
       <FilterHeaderWrapper>
         <HeaderContainer value={1}>
-          {Object.keys(appliedFields).length !== 0 && (
+          {fields && isEmptyObject(fields) && (
             <StyledText
               size={17}
               color={colors.primary}

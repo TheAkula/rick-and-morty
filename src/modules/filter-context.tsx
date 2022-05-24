@@ -47,7 +47,7 @@ const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
   switch (action.type) {
     case 'CLEAR':
       return {
-        applied: {},
+        ...state,
         changes: {},
       }
 

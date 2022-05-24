@@ -10,7 +10,11 @@ export const Filter = () => {
   return (
     <Stack.Navigator
       screenOptions={{ header: FilterHeader, statusBarHidden: true }}>
-      <Stack.Screen name="Home" component={FilterFields} />
+      <Stack.Screen
+        name="FilterHome"
+        component={FilterFields}
+        options={{ title: 'Filter' }}
+      />
     </Stack.Navigator>
   )
 }

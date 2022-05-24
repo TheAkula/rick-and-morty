@@ -18,7 +18,7 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ type }) => {
   const onPressed = () => {
     updateType(type)
     navigation.navigate('Filter', {
-      screen: 'Home',
+      screen: 'FilterHome',
       params: {
         type,
       },
