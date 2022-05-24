@@ -15,6 +15,7 @@ interface InitialState {
   updateField: (k: string, v: unknown) => void
   updateType: (t: string) => void
   clearFields: () => void
+  apply: () => void
 }
 
 interface FilterAction {
@@ -37,6 +38,7 @@ const initialState: InitialState = {
   updateField: () => undefined,
   updateType: () => undefined,
   clearFields: () => undefined,
+  apply: () => undefined,
 }
 
 const FilterContext = React.createContext(initialState)
@@ -86,6 +88,10 @@ export const FilterContextProvider = ({
     dispatch({ type: 'CLEAR' })
   }
 
+  const apply = () => {
+    dispatch({ type: 'APPLY' })
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -95,6 +101,7 @@ export const FilterContextProvider = ({
         type,
         updateType,
         clearFields,
+        apply,
       }}>
       {children}
     </FilterContext.Provider>

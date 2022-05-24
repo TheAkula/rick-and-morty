@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { CharacterCardImg } from 'src/components/atoms/characterCardImg'
-import { colors } from 'src/theme/colors'
 import { StyledText } from 'src/components/atoms/text'
+import { colors } from 'src/theme/colors'
 
 import { StyledCharacterCard, StyledCharacterCardInfo } from './styled'
 
