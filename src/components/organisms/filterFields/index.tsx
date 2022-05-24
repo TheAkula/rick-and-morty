@@ -1,4 +1,3 @@
-import { Route } from '@react-navigation/native'
 import React, { useMemo } from 'react'
 import {
   FlatList,
@@ -7,10 +6,11 @@ import {
   SectionListRenderItem,
   Text,
 } from 'react-native'
+import { Route } from '@react-navigation/native'
 
 import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListHeader'
-import { useFilterContext } from 'src/modules/filter-context'
 import { getFilterFields } from 'src/utils/getFilterFields'
+import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
 
 type Item = string
 
@@ -19,8 +19,6 @@ export const FilterFields = ({
 }: {
   route: Route<'Filter', { type: string }>
 }) => {
-  // eslint-disable-next-line no-console
-  console.log(route)
   const { type } = route.params
 
   // const { type } = useFilterContext()
@@ -43,7 +41,9 @@ export const FilterFields = ({
         <SectionList
           sections={[item]}
           renderSectionHeader={renderSectionHeader}
-          renderItem={(props) => <Text>{props.item}</Text>}
+          renderItem={(props) => (
+            <CheckboxFilterField title={item.title} name={props.item} />
+          )}
         />
       )
     }

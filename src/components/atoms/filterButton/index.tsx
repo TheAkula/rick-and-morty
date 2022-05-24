@@ -4,7 +4,7 @@ import { useLinkTo } from '@react-navigation/native'
 import { useFilterContext } from 'src/modules/filter-context'
 import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
-import { StyledText } from 'src/theme/styles'
+import { StyledText } from 'src/components/atoms/text'
 
 import { FilterContainer } from './styled'
 

@@ -1,7 +1,7 @@
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
-import { colors } from './colors'
+import { colors } from '../../theme/colors'
 
 interface StyledTextProps {
   size: number

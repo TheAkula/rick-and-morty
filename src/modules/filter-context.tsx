@@ -11,22 +11,29 @@ export type Fields = FilterLocation | FilterEpisode | FilterCharacter
 interface InitialState {
   type: string | null
   fields: Fields
+  appliedFields: Fields
   updateField: (k: string, v: unknown) => void
   updateType: (t: string) => void
   clearFields: () => void
 }
 
 interface FilterAction {
-  type: 'SET_FIELD' | 'CLEAR'
+  type: 'SET_FIELD' | 'CLEAR' | 'APPLY'
   payload?: {
     key: string
     value: unknown
   }
 }
 
+interface ReducerState {
+  applied: Fields
+  changes: Fields
+}
+
 const initialState: InitialState = {
   type: null,
   fields: {},
+  appliedFields: {},
   updateField: () => undefined,
   updateType: () => undefined,
   clearFields: () => undefined,
@@ -34,15 +41,28 @@ const initialState: InitialState = {
 
 const FilterContext = React.createContext(initialState)
 
-const reducer: Reducer<Fields, FilterAction> = (state, action) => {
+const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
   switch (action.type) {
     case 'CLEAR':
-      return {}
+      return {
+        applied: {},
+        changes: {},
+      }
 
     case 'SET_FIELD':
       return {
         ...state,
-        [action.payload?.key as string]: action.payload?.value,
+        changes: {
+          ...state.changes,
+          [action.payload?.key as string]: action.payload?.value,
+        },
+      }
+
+    case 'APPLY':
+      return {
+        ...state,
+        applied: { ...state.changes },
+        changes: {},
       }
   }
 }
@@ -52,7 +72,7 @@ export const FilterContextProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [fields, dispatch] = useReducer(reducer, {})
+  const [state, dispatch] = useReducer(reducer, { applied: {}, changes: {} })
   const [type, setType] = useState<string | null>(null)
 
   const updateField = (key: string, value: unknown) => {
@@ -69,7 +89,14 @@ export const FilterContextProvider = ({
 
   return (
     <FilterContext.Provider
-      value={{ fields, updateField, type, updateType, clearFields }}>
+      value={{
+        fields: state.changes,
+        appliedFields: state.applied,
+        updateField,
+        type,
+        updateType,
+        clearFields,
+      }}>
       {children}
     </FilterContext.Provider>
   )

@@ -3,7 +3,7 @@ import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs'
 import { getHeaderTitle } from '@react-navigation/elements'
 
 import { FilterButton } from 'src/components/atoms/filterButton'
-import { StyledText } from 'src/theme/styles'
+import { StyledText } from 'src/components/atoms/text'
 
 import { StyledTabHeader, StyledTabHeaderTitle } from './styled'
 

@@ -1,24 +1,29 @@
 import React from 'react'
-import { View } from 'react-native'
 import { getHeaderTitle } from '@react-navigation/elements'
 import { NativeStackHeaderProps } from '@react-navigation/native-stack'
 
-import { StyledText } from 'src/theme/styles'
+import { StyledText } from 'src/components/atoms/text'
+import { Button } from 'src/ui/button'
 
-import { StyledFilterHeader } from './styled'
+import {
+  FilterHeaderTitle,
+  FilterHeaderWrapper,
+  StyledFilterHeader,
+} from './styled'
 
 export const filterHeader = ({ route, options }: NativeStackHeaderProps) => {
   const title = getHeaderTitle(options, route.name)
 
   return (
     <StyledFilterHeader>
-      <View>
-        <StyledFilterHeader>
+      <FilterHeaderWrapper>
+        <FilterHeaderTitle>
           <StyledText size={15} weight="black">
             {title}
           </StyledText>
-        </StyledFilterHeader>
-      </View>
+        </FilterHeaderTitle>
+        <Button title="APPLY" />
+      </FilterHeaderWrapper>
     </StyledFilterHeader>
   )
 }
