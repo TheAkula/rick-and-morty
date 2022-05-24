@@ -19,10 +19,10 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
   name,
   isLast,
 }) => {
-  const { updateField, appliedFields } = useFilterContext()
+  const { updateField, fields } = useFilterContext()
 
   const onChangedHandler = () => {
-    if (appliedFields[title as keyof Fields] !== name) {
+    if (fields[title as keyof Fields] !== name) {
       updateField(title, name)
     } else {
       updateField(title, null)
@@ -33,7 +33,7 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
     <TouchableWithoutFeedback onPress={onChangedHandler}>
       <StyledCheckboxContainer>
         <RowCenter>
-          <Checkbox active={appliedFields[title as keyof Fields] === name} />
+          <Checkbox active={fields[title as keyof Fields] === name} />
         </RowCenter>
         <CheckboxTitle isLast={isLast}>
           <StyledText size={17}>

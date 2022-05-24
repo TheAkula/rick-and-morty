@@ -62,7 +62,6 @@ const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
       return {
         ...state,
         applied: { ...state.changes },
-        changes: {},
       }
   }
 }

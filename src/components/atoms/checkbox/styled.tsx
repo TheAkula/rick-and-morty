@@ -18,7 +18,7 @@ export const StyledCheckbox = styled(View)<{
   margin-right: 15px;
 `
 
-export const StyledCheckboxInner = styled(View)<{ acitve: boolean }>`
+export const StyledCheckboxInner = styled(View)<{ active: boolean }>`
   background-color: ${ifProp('active', colors.primary, 'transparent')};
   width: 14px;
   height: 14px;

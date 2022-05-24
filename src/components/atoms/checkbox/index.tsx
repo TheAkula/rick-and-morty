@@ -9,7 +9,7 @@ interface CheckboxProps {
 export const Checkbox: React.FC<CheckboxProps> = ({ active }) => {
   return (
     <StyledCheckbox active={active}>
-      <StyledCheckboxInner acitve={active} />
+      <StyledCheckboxInner active={active} />
     </StyledCheckbox>
   )
 }
