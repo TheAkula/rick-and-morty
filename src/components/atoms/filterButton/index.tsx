@@ -2,6 +2,7 @@ import React from 'react'
 import { useLinkTo } from '@react-navigation/native'
 
 import { useFilterContext } from 'src/modules/filter-context'
+import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { StyledText } from 'src/theme/styles'
 
@@ -13,11 +14,17 @@ interface FilterButtonProps {
 
 export const FilterButton: React.FC<FilterButtonProps> = ({ type }) => {
   const linkTo = useLinkTo()
+  const navigation = useNavigation()
   const { updateType } = useFilterContext()
 
   const onPressed = () => {
     updateType(type)
-    linkTo('/Filter/')
+    navigation.navigate('Filter', {
+      screen: 'Home',
+      params: {
+        type,
+      },
+    })
   }
 
   return (

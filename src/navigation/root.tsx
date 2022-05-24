@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Filter } from 'src/components/organisms/filter'
+import { Filter } from 'src/components/templates/filter'
 import { useAlertContext } from 'src/modules/alert-context'
 import { Alert } from 'src/ui/alert'
 

@@ -10,9 +10,6 @@ import { StyledTabHeader, StyledTabHeaderTitle } from './styled'
 export const Header: React.FC<BottomTabHeaderProps> = ({ route, options }) => {
   const title = getHeaderTitle(options, route.name)
 
-  // eslint-disable-next-line no-console
-  console.log(options)
-
   return (
     <StyledTabHeader>
       <StyledTabHeaderTitle>

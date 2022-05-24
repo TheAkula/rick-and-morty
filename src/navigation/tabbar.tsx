@@ -25,8 +25,8 @@ export const TabBar = () => {
         name={Routes.CharacterScreen}
         component={CharacterScreen}
         options={{
-          headerTitle: 'Characters',
-          title: 'characters',
+          headerTitle: 'Character',
+          title: 'character',
           tabBarIcon: ({ focused }) => <View />,
         }}
       />
