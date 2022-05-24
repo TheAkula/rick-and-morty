@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
+import View from 'react-native'
 import Modal from 'react-native-modal'
-import { BlurView } from '@react-native-community/blur'
 import styled from 'styled-components/native'
 
 interface IModalMenu {
@@ -20,7 +20,7 @@ const Container = styled.View`
   border-top-right-radius: 20px;
 `
 
-const Blur = styled(BlurView)`
+const Blur = styled(View)`
   padding: 20px;
 `
 
