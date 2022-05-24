@@ -11,11 +11,13 @@ import { CheckboxTitle, StyledCheckboxContainer } from './styled'
 interface CheckboxFilterFieldProps {
   title: string
   name: string
+  isLast: boolean
 }
 
 export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
   title,
   name,
+  isLast,
 }) => {
   const { updateField, appliedFields } = useFilterContext()
 
@@ -33,10 +35,10 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
         <RowCenter>
           <Checkbox active={appliedFields[title as keyof Fields] === name} />
         </RowCenter>
-        <CheckboxTitle>
-            <StyledText size={17}>
-              {name[0].toUpperCase() + name.slice(1)}
-            </StyledText>
+        <CheckboxTitle isLast={isLast}>
+          <StyledText size={17}>
+            {name[0].toUpperCase() + name.slice(1)}
+          </StyledText>
         </CheckboxTitle>
       </StyledCheckboxContainer>
     </TouchableWithoutFeedback>
