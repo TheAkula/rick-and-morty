@@ -1,4 +1,5 @@
 import React from 'react'
+import { TextInputProps } from 'react-native'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
@@ -19,10 +20,10 @@ const InputContainer = styled.View`
   border-style: solid;
 `
 
-export const Input = () => {
+export const Input: React.FC<TextInputProps> = (props) => {
   return (
     <InputContainer>
-      <StyledTextInput placeholder="Search" />
+      <StyledTextInput placeholder="Search" {...props} />
     </InputContainer>
   )
 }

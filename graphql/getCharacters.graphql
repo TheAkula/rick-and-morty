@@ -9,6 +9,14 @@ query getCharacters($options: FilterCharacter, $i: Int) {
   }
 }
 
+query getCharactersNames($name: String) {
+  characters(filter: { name: $name }) {
+    results {
+      name
+    }
+  }
+}
+
 query getCharacter($id: ID!) {
   character(id: $id) {
     image

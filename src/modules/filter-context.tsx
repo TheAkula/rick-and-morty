@@ -6,7 +6,7 @@ import {
   FilterLocation,
 } from 'src/generated/graphql'
 
-export type Fields = FilterLocation | FilterEpisode | FilterCharacter
+export type Fields = FilterLocation & FilterEpisode & FilterCharacter
 
 interface InitialState {
   type: string | null
@@ -49,6 +49,7 @@ const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
       return {
         ...state,
         changes: {},
+        applied: {},
       }
 
     case 'SET_FIELD':

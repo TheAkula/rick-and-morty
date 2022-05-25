@@ -210,6 +210,13 @@ export type GetCharactersQueryVariables = Exact<{
 
 export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, image?: string | null } | null> | null } | null };
 
+export type GetCharactersNamesQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetCharactersNamesQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', name?: string | null } | null> | null } | null };
+
 export type GetCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -259,6 +266,43 @@ export function useGetCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetCharactersQueryHookResult = ReturnType<typeof useGetCharactersQuery>;
 export type GetCharactersLazyQueryHookResult = ReturnType<typeof useGetCharactersLazyQuery>;
 export type GetCharactersQueryResult = Apollo.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
+export const GetCharactersNamesDocument = gql`
+    query getCharactersNames($name: String) {
+  characters(filter: {name: $name}) {
+    results {
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetCharactersNamesQuery__
+ *
+ * To run a query within a React component, call `useGetCharactersNamesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCharactersNamesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCharactersNamesQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetCharactersNamesQuery(baseOptions?: Apollo.QueryHookOptions<GetCharactersNamesQuery, GetCharactersNamesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCharactersNamesQuery, GetCharactersNamesQueryVariables>(GetCharactersNamesDocument, options);
+      }
+export function useGetCharactersNamesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharactersNamesQuery, GetCharactersNamesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCharactersNamesQuery, GetCharactersNamesQueryVariables>(GetCharactersNamesDocument, options);
+        }
+export type GetCharactersNamesQueryHookResult = ReturnType<typeof useGetCharactersNamesQuery>;
+export type GetCharactersNamesLazyQueryHookResult = ReturnType<typeof useGetCharactersNamesLazyQuery>;
+export type GetCharactersNamesQueryResult = Apollo.QueryResult<GetCharactersNamesQuery, GetCharactersNamesQueryVariables>;
 export const GetCharacterDocument = gql`
     query getCharacter($id: ID!) {
   character(id: $id) {

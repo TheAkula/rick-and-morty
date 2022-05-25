@@ -47,7 +47,7 @@ export const Filter = () => {
       <Stack.Screen
         name="FilterHome"
         component={FilterFields}
-        options={{
+        options={(options) => ({
           title: 'Filter',
           headerRight: () => <Button title="APPLY" onPress={onApply} />,
           headerLeft: () =>
@@ -63,8 +63,9 @@ export const Filter = () => {
             ),
           contentStyle: {
             paddingTop: 20,
+            backgroundColor: colors.basic.white,
           },
-        }}
+        })}
       />
       <Stack.Screen
         name="Select"
