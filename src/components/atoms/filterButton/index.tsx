@@ -2,7 +2,7 @@ import React from 'react'
 
 import { StyledText } from 'src/components/atoms/text'
 import { useFilterContext } from 'src/modules/filter-context'
-import { useNavigation } from 'src/navigation/routes'
+import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
 import { FilterContainer } from './styled'
@@ -17,11 +17,8 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ type }) => {
 
   const onPressed = () => {
     updateType(type)
-    navigation.navigate('Filter', {
+    navigation.navigate(Routes.FilterScreen, {
       screen: 'FilterHome',
-      params: {
-        type,
-      },
     })
   }
 

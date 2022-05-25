@@ -19,7 +19,7 @@ export const RootNavigation = () => {
         screenOptions={{ headerShown: false }}
         initialRouteName={Routes.MainNavigator}>
         <Stack.Screen name={Routes.MainNavigator} component={TabBar} />
-        <Stack.Screen name="Filter" component={Filter} />
+        <Stack.Screen name={Routes.FilterScreen} component={Filter} />
       </Stack.Navigator>
       {visible && <Alert />}
     </React.Fragment>

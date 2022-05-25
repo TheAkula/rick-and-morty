@@ -11,8 +11,8 @@ export interface FilterFieldCheck {
 }
 
 const CHARACTER_FIELDS: (FilterFieldCheck | FilterFieldSelect)[] = [
-  { title: 'species', description: 'Give a name', type: 'select' },
-  { title: 'name', description: 'Enter species', type: 'select' },
+  { title: 'name', description: 'Give a name', type: 'select' },
+  { title: 'species', description: 'Enter species', type: 'select' },
   {
     title: 'gender',
     data: ['female', 'male', 'genderless', 'unknown'],
@@ -45,7 +45,7 @@ export enum ScreenTypes {
 // ): (FilterFieldCheck | FilterFieldSelect)[]
 
 export function getFilterFields(
-  type: string,
+  type: string | null,
 ): (FilterFieldCheck | FilterFieldSelect)[] | null {
   if (!type) {
     return null

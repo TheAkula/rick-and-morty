@@ -1,26 +1,21 @@
 import React, { useMemo } from 'react'
 import { FlatList, ListRenderItem, SectionListRenderItem } from 'react-native'
-import { Route } from '@react-navigation/native'
 
 import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListHeader'
 import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
 import { FilterSectionList } from 'src/components/molecules/filterSectionList'
 import { SelectFilterField } from 'src/components/molecules/selectFilterField'
+import { useFilterContext } from 'src/modules/filter-context'
 import {
   FilterFieldCheck,
   FilterFieldSelect,
   getFilterFields,
-  ScreenTypes,
 } from 'src/utils/getFilterFields'
 
 type Item = string
 
-export const FilterFields = ({
-  route,
-}: {
-  route: Route<'Filter', { type: ScreenTypes }>
-}) => {
-  const { type } = route.params
+export const FilterFields = () => {
+  const { type } = useFilterContext()
 
   const renderSectionHeader: SectionListRenderItem<Item, FilterFieldCheck> = ({
     section: { title },
