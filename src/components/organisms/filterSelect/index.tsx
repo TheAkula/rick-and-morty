@@ -1,6 +1,8 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Route } from '@react-navigation/native'
+
+import { Input } from 'src/ui/input'
 
 export const FilterSelect = ({
   route,
@@ -12,7 +14,7 @@ export const FilterSelect = ({
   return (
     <View>
       <View>
-        <Text>{title}</Text>
+        <Input />
       </View>
     </View>
   )

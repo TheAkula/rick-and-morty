@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import { Route } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { FilterBack } from 'src/components/atoms/filterBack'
@@ -39,7 +40,6 @@ export const Filter = () => {
         headerTitleAlign: 'center',
         contentStyle: {
           backgroundColor: colors.basic.white,
-          paddingTop: 20,
         },
         headerShadowVisible: false,
         headerBackVisible: false,
@@ -61,13 +61,23 @@ export const Filter = () => {
             ) : (
               <View />
             ),
+          contentStyle: {
+            paddingTop: 20,
+          },
         }}
       />
       <Stack.Screen
         name="Select"
         component={FilterSelect}
-        options={{
-          headerLeft: () => <FilterBack />,
+        options={({ route }) => {
+          const title = route.params
+            ? ((route.params as { title: string }).title as string)
+            : ''
+
+          return {
+            headerLeft: () => <FilterBack />,
+            title: title ? title[0].toUpperCase() + title.slice(1) : '',
+          }
         }}
       />
     </Stack.Navigator>
