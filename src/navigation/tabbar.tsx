@@ -2,7 +2,6 @@ import React from 'react'
 import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { StyledText } from 'src/components/atoms/text'
 import { Header } from 'src/components/molecules/header'
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'

@@ -15,7 +15,7 @@ export const StyledCheckbox = styled(View)<{
   justify-content: center;
   align-items: center;
   border-radius: 11px;
-  margin-right: 15px;
+  margin-right: 16px;
 `
 
 export const StyledCheckboxInner = styled(View)<{ active: boolean }>`

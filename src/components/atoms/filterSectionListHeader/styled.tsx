@@ -8,6 +8,6 @@ export const StyledFilterSectionListHeader = styled(View)`
   padding-left: 16px;
   padding-bottom: 9px;
   border-bottom-width: 1px;
-  border-color: ${colors.graybase.gray2};
+  border-color: ${colors.basic.line};
   border-style: solid;
 `

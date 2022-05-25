@@ -1,40 +1,37 @@
 import React, { useMemo } from 'react'
-import {
-  FlatList,
-  ListRenderItem,
-  SectionListRenderItem,
-  Text,
-} from 'react-native'
+import { FlatList, ListRenderItem, SectionListRenderItem } from 'react-native'
 import { Route } from '@react-navigation/native'
 
 import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListHeader'
 import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
 import { FilterSectionList } from 'src/components/molecules/filterSectionList'
-import { getFilterFields } from 'src/utils/getFilterFields'
+import { SelectFilterField } from 'src/components/molecules/selectFilterField'
+import {
+  FilterFieldCheck,
+  FilterFieldSelect,
+  getFilterFields,
+  ScreenTypes,
+} from 'src/utils/getFilterFields'
 
 type Item = string
 
 export const FilterFields = ({
   route,
 }: {
-  route: Route<'Filter', { type: string }>
+  route: Route<'Filter', { type: ScreenTypes }>
 }) => {
   const { type } = route.params
 
-  const renderSectionHeader: SectionListRenderItem<
-    Item,
-    {
-      title: string
-      data: Item[]
-    }
-  > = ({ section: { title } }) => {
+  const renderSectionHeader: SectionListRenderItem<Item, FilterFieldCheck> = ({
+    section: { title },
+  }) => {
     return <FilterSectionListHeader title={title} />
   }
 
-  const renderField: ListRenderItem<
-    { title: string; data: string[] } | string
-  > = ({ item }) => {
-    if (typeof item === 'object') {
+  const renderField: ListRenderItem<FilterFieldSelect | FilterFieldCheck> = ({
+    item,
+  }) => {
+    if (item.type === 'check') {
       return (
         <FilterSectionList
           sections={[item]}
@@ -50,7 +47,9 @@ export const FilterFields = ({
       )
     }
 
-    return <Text>{item}</Text>
+    return (
+      <SelectFilterField name={item.title} description={item.description} />
+    )
   }
 
   const fields = useMemo(() => getFilterFields(type), [type])

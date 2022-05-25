@@ -9,6 +9,7 @@ export const colors = {
     headerBg: '#F8F8F8',
     lightGray: '#6E798C',
     lightTitle: '#00000066',
+    line: '#ccc',
   },
   graybase: {
     gray1: '#8E8E93',
