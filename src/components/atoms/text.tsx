@@ -6,7 +6,7 @@ import { colors } from '../../theme/colors'
 interface StyledTextProps {
   size: number
   color?: string
-  weight?: 'regular' | 'bold' | 'black'
+  weight?: 'regular' | 'bold' | 'black' | 'medium'
 }
 
 export const StyledText = styled(Text)<StyledTextProps>`
