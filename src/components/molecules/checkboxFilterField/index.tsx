@@ -4,12 +4,16 @@ import { TouchableWithoutFeedback } from 'react-native'
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { RowCenter } from 'src/components/atoms/row-center'
 import { StyledText } from 'src/components/atoms/text'
-import { Fields, useFilterContext } from 'src/modules/filter-context'
+import {
+  FilterFieldType,
+  getValue,
+  useFilterContext,
+} from 'src/modules/filter-context'
 
 import { CheckboxTitle, StyledCheckboxContainer } from './styled'
 
 interface CheckboxFilterFieldProps {
-  title: string
+  title: FilterFieldType
   name: string
   isLast: boolean
 }
@@ -19,10 +23,10 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
   name,
   isLast,
 }) => {
-  const { updateField, fields } = useFilterContext()
+  const { updateField, fields, type } = useFilterContext()
 
   const onChangedHandler = () => {
-    if (fields[title as keyof Fields] !== name) {
+    if (type && getValue(fields, type, title) !== name) {
       updateField(title, name)
     } else {
       updateField(title, null)
@@ -33,7 +37,7 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
     <TouchableWithoutFeedback onPress={onChangedHandler}>
       <StyledCheckboxContainer>
         <RowCenter>
-          <Checkbox active={fields[title as keyof Fields] === name} />
+          <Checkbox active={!!type && getValue(fields, type, title) === name} />
         </RowCenter>
         <CheckboxTitle isLast={isLast}>
           <StyledText size={17}>

@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Characters } from 'src/components/organisms/characters'
 import { useGetCharactersQuery } from 'src/generated/graphql'
 
-import { useFilterContext } from '../filter-context'
+import { ScreenTypes, useFilterContext } from '../filter-context'
 
 const Stack = createNativeStackNavigator()
 
@@ -14,16 +14,16 @@ export const CharacterScreen = () => {
 
   const { loading, error, data } = useGetCharactersQuery({
     variables: {
-      options: appliedFields,
+      options: appliedFields[ScreenTypes.character],
     },
-  } as any)
-
-  if (loading) {
-    return <Text>Loading...</Text>
-  }
+  })
 
   if (error) {
     return <Text>{error.message}</Text>
+  }
+
+  if (loading) {
+    return <Text>Loading...</Text>
   }
 
   return (

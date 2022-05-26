@@ -1,12 +1,14 @@
+import { FilterFieldType, ScreenTypes } from 'src/modules/filter-context'
+
 export interface FilterFieldSelect {
   type: 'select'
-  title: string
+  title: FilterFieldType
   description: string
 }
 
 export interface FilterFieldCheck {
   type: 'check'
-  title: string
+  title: FilterFieldType
   data: string[]
 }
 
@@ -29,12 +31,6 @@ const EPISODE_FIELDS: FilterFieldSelect[] = [
   { title: 'name', type: 'select', description: 'Give a name' },
   { title: 'episode', type: 'select', description: 'Select one' },
 ]
-
-export enum ScreenTypes {
-  location = 'location',
-  episode = 'episode',
-  character = 'character',
-}
 
 // export function getFilterFields(
 //   type: ScreenTypes.episode | ScreenTypes.location,

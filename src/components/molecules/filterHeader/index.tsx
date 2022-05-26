@@ -18,7 +18,7 @@ import {
 
 export const FilterHeader = ({ route, options }: NativeStackHeaderProps) => {
   const title = getHeaderTitle(options, route.name)
-  const { fields, clearFields, apply } = useFilterContext()
+  const { fields, clearFields, apply, type } = useFilterContext()
   const navigation = useNavigation()
 
   const onClearHandler = () => {
@@ -34,7 +34,7 @@ export const FilterHeader = ({ route, options }: NativeStackHeaderProps) => {
     <StyledFilterHeader>
       <FilterHeaderWrapper>
         <HeaderContainer value={1}>
-          {fields && isEmptyObject(fields) && (
+          {fields && type && isEmptyObject(fields[type]) && (
             <StyledText
               size={17}
               color={colors.primary}

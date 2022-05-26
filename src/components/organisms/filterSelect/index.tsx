@@ -2,16 +2,20 @@ import React from 'react'
 import { View } from 'react-native'
 import { Route } from '@react-navigation/native'
 
-import { Fields, useFilterContext } from 'src/modules/filter-context'
+import {
+  FilterFieldType,
+  getValue,
+  useFilterContext,
+} from 'src/modules/filter-context'
 import { Input } from 'src/ui/input'
 
 export const FilterSelect = ({
   route,
 }: {
-  route: Route<'Select', { title: string }>
+  route: Route<'Select', { title: FilterFieldType }>
 }) => {
   const { title } = route.params
-  const { fields, updateField } = useFilterContext()
+  const { fields, updateField, type } = useFilterContext()
 
   const onChangedHandler = (text: string) => {
     updateField(title, text)
@@ -20,10 +24,12 @@ export const FilterSelect = ({
   return (
     <View>
       <View>
-        <Input
-          onChangeText={onChangedHandler}
-          value={fields[title as keyof Fields] || ''}
-        />
+        {type && (
+          <Input
+            onChangeText={onChangedHandler}
+            value={getValue(fields, type, title)}
+          />
+        )}
       </View>
     </View>
   )

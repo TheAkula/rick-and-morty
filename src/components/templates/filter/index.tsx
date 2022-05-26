@@ -16,7 +16,7 @@ import { isEmptyObject } from 'src/utils/isEmptyObject'
 const Stack = createNativeStackNavigator()
 
 export const Filter = () => {
-  const { apply, fields, clearFields } = useFilterContext()
+  const { apply, fields, clearFields, type } = useFilterContext()
   const navigation = useNavigation()
 
   const onApply = () => {
@@ -47,11 +47,11 @@ export const Filter = () => {
       <Stack.Screen
         name="FilterHome"
         component={FilterFields}
-        options={(options) => ({
+        options={() => ({
           title: 'Filter',
           headerRight: () => <Button title="APPLY" onPress={onApply} />,
           headerLeft: () =>
-            fields && isEmptyObject(fields) ? (
+            type && !isEmptyObject(fields[type]) ? (
               <StyledText
                 size={17}
                 color={colors.primary}

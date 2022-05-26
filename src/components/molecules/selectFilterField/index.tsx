@@ -3,7 +3,13 @@ import { TouchableWithoutFeedback, View } from 'react-native'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { StyledText } from 'src/components/atoms/text'
-import { Fields, useFilterContext } from 'src/modules/filter-context'
+import {
+  Fields,
+  FilterFieldType,
+  getValue,
+  ScreenTypes,
+  useFilterContext,
+} from 'src/modules/filter-context'
 import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
@@ -15,7 +21,7 @@ import {
 } from './styled'
 
 interface SelectFilterFieldProps {
-  name: string
+  name: FilterFieldType
   description: string
 }
 
@@ -23,7 +29,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
   name,
   description,
 }) => {
-  const { fields } = useFilterContext()
+  const { fields, type } = useFilterContext()
   const navigation = useNavigation()
 
   const onPressed = () => {
@@ -36,7 +42,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
     <TouchableWithoutFeedback onPress={onPressed}>
       <StyledSelectFilterField>
         <StyledFieldInfoItem>
-          <Checkbox active={!!fields[name as keyof Fields]} />
+          <Checkbox active={!!type && !!getValue(fields, type, name)} />
           <View>
             <StyledText size={17} weight="black">
               {name[0].toUpperCase() + name.slice(1)}

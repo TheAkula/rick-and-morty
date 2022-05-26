@@ -5,21 +5,20 @@ import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListH
 import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
 import { FilterSectionList } from 'src/components/molecules/filterSectionList'
 import { SelectFilterField } from 'src/components/molecules/selectFilterField'
-import { useFilterContext } from 'src/modules/filter-context'
+import { FilterFieldType, useFilterContext } from 'src/modules/filter-context'
 import {
   FilterFieldCheck,
   FilterFieldSelect,
   getFilterFields,
 } from 'src/utils/getFilterFields'
 
-type Item = string
-
 export const FilterFields = () => {
   const { type } = useFilterContext()
 
-  const renderSectionHeader: SectionListRenderItem<Item, FilterFieldCheck> = ({
-    section: { title },
-  }) => {
+  const renderSectionHeader: SectionListRenderItem<
+    FilterFieldType,
+    FilterFieldCheck
+  > = ({ section: { title } }) => {
     return <FilterSectionListHeader title={title} />
   }
 
