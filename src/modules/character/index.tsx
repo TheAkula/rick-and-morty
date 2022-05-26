@@ -1,29 +1,19 @@
 import React from 'react'
-import { Text } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
+import { BackButton } from 'src/components/atoms/backButton'
+import { StyledText } from 'src/components/atoms/text'
 import { Characters } from 'src/components/organisms/characters'
-import { useGetCharactersQuery } from 'src/generated/graphql'
-
-import { ScreenTypes, useFilterContext } from '../filter-context'
+import { Character } from 'src/components/templates/character'
+import { useNavigation } from 'src/navigation/routes'
 
 const Stack = createNativeStackNavigator()
 
 export const CharacterScreen = () => {
-  const { appliedFields } = useFilterContext()
+  const navigation = useNavigation()
 
-  const { loading, error, data } = useGetCharactersQuery({
-    variables: {
-      options: appliedFields[ScreenTypes.character],
-    },
-  })
-
-  if (error) {
-    return <Text>{error.message}</Text>
-  }
-
-  if (loading) {
-    return <Text>Loading...</Text>
+  const onGoBack = () => {
+    navigation.goBack()
   }
 
   return (
@@ -32,9 +22,22 @@ export const CharacterScreen = () => {
         headerShown: false,
         contentStyle: { backgroundColor: '#fff' },
       }}>
-      <Stack.Screen name="Home">
-        {() => <Characters characters={data?.characters?.results} />}
-      </Stack.Screen>
+      <Stack.Screen name="Home" component={Characters} />
+      <Stack.Screen
+        name="CharacterDetail"
+        component={Character}
+        options={{
+          headerLeft: () => <BackButton pressed={onGoBack} />,
+          headerBackVisible: false,
+          headerTitleAlign: 'center',
+          headerTitle: (props) => (
+            <StyledText size={15} weight="black">
+              {props.children}
+            </StyledText>
+          ),
+          headerShadowVisible: false,
+        }}
+      />
     </Stack.Navigator>
   )
 }

@@ -1,31 +1,27 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 
-import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
 import ArrowLeftImage from '../../../../assets/images/icons/arrow-left.svg'
 import { StyledText } from '../text'
-import { ImageWrapper, StyledFilterBack } from './styled'
+import { ImageWrapper, StyledBackButton } from './styled'
 
-export const FilterBack = () => {
-  const navigation = useNavigation()
+interface BackButtonProps {
+  pressed: () => void
+}
 
+export const BackButton: React.FC<BackButtonProps> = ({ pressed }) => {
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate(Routes.FilterScreen, {
-          screen: 'FilterHome',
-        })
-      }>
-      <StyledFilterBack>
+    <TouchableOpacity onPress={pressed}>
+      <StyledBackButton>
         <ImageWrapper>
           <ArrowLeftImage width={12} height={20.5} />
         </ImageWrapper>
         <StyledText size={17} color={colors.primary}>
           Back
         </StyledText>
-      </StyledFilterBack>
+      </StyledBackButton>
     </TouchableOpacity>
   )
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Route } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { FilterBack } from 'src/components/atoms/filterBack'
+import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
 import { FilterFields } from 'src/components/organisms/filterFields'
 import { FilterSelect } from 'src/components/organisms/filterSelect'
 import { useFilterContext } from 'src/modules/filter-context'
 import { useNavigation } from 'src/navigation/routes'
+import { Routes } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { Button } from 'src/ui/button'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
@@ -27,6 +27,11 @@ export const Filter = () => {
   const onClearHandler = () => {
     clearFields()
   }
+
+  const onGoBack = () =>
+    navigation.navigate(Routes.FilterScreen, {
+      screen: 'FilterHome',
+    })
 
   return (
     <Stack.Navigator
@@ -76,7 +81,7 @@ export const Filter = () => {
             : ''
 
           return {
-            headerLeft: () => <FilterBack />,
+            headerLeft: () => <BackButton pressed={onGoBack} />,
             title: title ? title[0].toUpperCase() + title.slice(1) : '',
           }
         }}

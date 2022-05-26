@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const StyledFilterBack = styled.View`
+export const StyledBackButton = styled.View`
   flex-direction: row;
   align-items: center;
 `
