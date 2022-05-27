@@ -1,17 +1,25 @@
-import React from 'react'
-import { Text } from 'react-native'
-import { Route } from '@react-navigation/native'
+import React, { useLayoutEffect } from 'react'
+import { Text, View } from 'react-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 import { CharacterDetailCard } from 'src/components/molecules/characterDetailCard'
-import { Scalars, useGetCharacterQuery } from 'src/generated/graphql'
+import { useGetCharacterQuery } from 'src/generated/graphql'
+import { RootStack } from 'src/navigation/root'
+import { Routes } from 'src/navigation/routes'
 
-export const Character = ({
-  route,
-}: {
-  route: Route<'Character', { id: Scalars['ID'] }>
-}) => {
+type Props = NativeStackScreenProps<RootStack, Routes.CharacterDetailScreen>
+
+export const Character = ({ route, navigation }: Props) => {
   const { id } = route.params
   const { loading, error, data } = useGetCharacterQuery({ variables: { id } })
+
+  useLayoutEffect(() => {
+    if (data?.character?.name) {
+      navigation.setOptions({
+        title: data?.character?.name,
+      })
+    }
+  }, [navigation, data])
 
   if (loading) {
     return <Text>Loading...</Text>
@@ -21,5 +29,9 @@ export const Character = ({
     return <Text>{error.message}</Text>
   }
 
-  return data?.character && <CharacterDetailCard {...data?.character} />
+  return data?.character ? (
+    <CharacterDetailCard {...data?.character} />
+  ) : (
+    <View />
+  )
 }

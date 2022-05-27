@@ -3,7 +3,8 @@ import { TouchableOpacity } from 'react-native'
 
 import { CharacterCardImg } from 'src/components/atoms/characterCardImg'
 import { StyledText } from 'src/components/atoms/text'
-import { useNavigation } from 'src/navigation/routes'
+import { Scalars } from 'src/generated/graphql'
+import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
 import { StyledCharacterCard, StyledCharacterCardInfo } from './styled'
@@ -12,7 +13,7 @@ interface CharacterCardProps {
   image: string
   status: string
   name: string
-  id: number
+  id: Scalars['ID']
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({
@@ -24,7 +25,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
   const navigation = useNavigation()
 
   const onPressed = () => {
-    navigation.navigate('CharacterDetail', {
+    navigation.navigate(Routes.CharacterDetailScreen, {
       id,
     })
   }
