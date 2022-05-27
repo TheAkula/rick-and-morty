@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 import { CharacterDetailCard } from 'src/components/molecules/characterDetailCard'
+import { CharacterInformations } from 'src/components/molecules/characterInformations'
 import { useGetCharacterQuery } from 'src/generated/graphql'
 import { RootStack } from 'src/navigation/root'
 import { Routes } from 'src/navigation/routes'
@@ -30,7 +31,10 @@ export const Character = ({ route, navigation }: Props) => {
   }
 
   return data?.character ? (
-    <CharacterDetailCard {...data?.character} />
+    <View>
+      <CharacterDetailCard {...data?.character} />
+      <CharacterInformations {...data?.character} />
+    </View>
   ) : (
     <View />
   )

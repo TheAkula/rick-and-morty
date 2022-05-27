@@ -12,6 +12,7 @@ export const StyledCharacterDetailCard = styled.ImageBackground.attrs({
   padding-top: 15px;
   align-items: center;
   background-color: ${colors.graybase.gray6};
+  padding-bottom: 20px;
 `
 
 export const ImageContainer = styled.View`

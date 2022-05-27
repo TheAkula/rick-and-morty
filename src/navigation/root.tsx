@@ -7,6 +7,7 @@ import { Character } from 'src/components/templates/character'
 import { Filter } from 'src/components/templates/filter'
 import { Scalars } from 'src/generated/graphql'
 import { useAlertContext } from 'src/modules/alert-context'
+import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 
 import { Routes } from './routes'
@@ -34,6 +35,9 @@ export const RootNavigation = () => {
           name={Routes.CharacterDetailScreen}
           component={Character}
           options={({ navigation }) => ({
+            contentStyle: {
+              backgroundColor: colors.basic.white,
+            },
             headerShown: true,
             headerLeft: () => (
               <BackButton pressed={() => navigation.goBack()} />
