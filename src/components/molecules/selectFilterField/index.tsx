@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
-import { DetailsItem } from 'src/components/atoms/detailsItem'
+import { DetailItem } from 'src/components/atoms/detailItem'
 import { StyledText } from 'src/components/atoms/text'
 import {
   Fields,
@@ -44,7 +44,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
       <StyledSelectFilterField>
         <StyledFieldInfoItem>
           <Checkbox active={!!type && !!getValue(fields, type, name)} />
-          <DetailsItem name={name} description={description} />
+          <DetailItem title={name} description={description} />
         </StyledFieldInfoItem>
         <ArrowContainer>
           <ArrowImage width={8} height={22} />
