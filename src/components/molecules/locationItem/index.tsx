@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native'
 
 import { StyledText } from 'src/components/atoms/text'
 import { Scalars } from 'src/generated/graphql'
+import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
 import { StyledLocationItem } from './styled'
@@ -18,7 +19,14 @@ export const LocationItem: React.FC<LocaitonItemProps> = ({
   name,
   id,
 }) => {
-  const onPressedHandler = () => {}
+  const navigation = useNavigation()
+
+  const onPressedHandler = () => {
+    navigation.navigate(Routes.LocationDetailScreen, {
+      id,
+      name,
+    })
+  }
 
   return (
     <TouchableOpacity onPress={onPressedHandler}>

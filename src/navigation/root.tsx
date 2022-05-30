@@ -5,6 +5,7 @@ import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
 import { Character } from 'src/components/templates/character'
 import { Filter } from 'src/components/templates/filter'
+import { Location } from 'src/components/templates/location'
 import { Scalars } from 'src/generated/graphql'
 import { useAlertContext } from 'src/modules/alert-context'
 import { colors } from 'src/theme/colors'
@@ -17,6 +18,7 @@ export type RootStack = {
   [Routes.MainNavigator]: undefined
   [Routes.FilterScreen]: undefined
   [Routes.CharacterDetailScreen]: { id: Scalars['ID']; name: string }
+  [Routes.LocationDetailScreen]: { id: Scalars['ID']; name: string }
 }
 
 const Stack = createNativeStackNavigator<RootStack>()
@@ -27,7 +29,13 @@ export const RootNavigation = () => {
   return (
     <React.Fragment>
       <Stack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          headerShadowVisible: false,
+          contentStyle: {
+            backgroundColor: colors.basic.white,
+          },
+        }}
         initialRouteName={Routes.MainNavigator}>
         <Stack.Screen name={Routes.MainNavigator} component={TabBar} />
         <Stack.Screen name={Routes.FilterScreen} component={Filter} />
@@ -35,9 +43,6 @@ export const RootNavigation = () => {
           name={Routes.CharacterDetailScreen}
           component={Character}
           options={({ navigation, route }) => ({
-            contentStyle: {
-              backgroundColor: colors.basic.white,
-            },
             headerShown: true,
             headerLeft: () => (
               <BackButton pressed={() => navigation.goBack()} />
@@ -50,7 +55,24 @@ export const RootNavigation = () => {
                 {props.children}
               </StyledText>
             ),
-            headerShadowVisible: false,
+          })}
+        />
+        <Stack.Screen
+          name={Routes.LocationDetailScreen}
+          component={Location}
+          options={({ navigation, route }) => ({
+            title: route.params.name.slice(0, 16) + '...',
+            headerShown: true,
+            headerLeft: () => (
+              <BackButton pressed={() => navigation.goBack()} />
+            ),
+            headerBackVisible: false,
+            headerTitle: (props) => (
+              <StyledText size={15} weight="black">
+                {props.children}
+              </StyledText>
+            ),
+            headerTitleAlign: 'center',
           })}
         />
       </Stack.Navigator>

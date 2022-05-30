@@ -3,16 +3,12 @@ import { TouchableWithoutFeedback, View } from 'react-native'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { DetailItem } from 'src/components/atoms/detailItem'
-import { StyledText } from 'src/components/atoms/text'
 import {
-  Fields,
   FilterFieldType,
   getValue,
-  ScreenTypes,
   useFilterContext,
 } from 'src/modules/filter-context'
 import { useNavigation } from 'src/navigation/routes'
-import { colors } from 'src/theme/colors'
 
 import ArrowImage from '../../../../assets/images/icons/arrow-right.svg'
 import {
