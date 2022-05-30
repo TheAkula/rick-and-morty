@@ -15,12 +15,12 @@ export interface FilterFieldCheck {
 const CHARACTER_FIELDS: (FilterFieldCheck | FilterFieldSelect)[] = [
   { title: 'name', description: 'Give a name', type: 'select' },
   { title: 'species', description: 'Enter species', type: 'select' },
+  { title: 'status', data: ['alive', 'dead', 'unknown'], type: 'check' },
   {
     title: 'gender',
     data: ['female', 'male', 'genderless', 'unknown'],
     type: 'check',
   },
-  { title: 'status', data: ['alive', 'dead', 'unknown'], type: 'check' },
 ]
 const LOCATION_FIELDS: FilterFieldSelect[] = [
   { title: 'name', type: 'select', description: 'Give a name' },
@@ -31,14 +31,6 @@ const EPISODE_FIELDS: FilterFieldSelect[] = [
   { title: 'name', type: 'select', description: 'Give a name' },
   { title: 'episode', type: 'select', description: 'Select one' },
 ]
-
-// export function getFilterFields(
-//   type: ScreenTypes.episode | ScreenTypes.location,
-// ): FilterFieldSelect[]
-
-// export function getFilterFields(
-//   type: ScreenTypes.character,
-// ): (FilterFieldCheck | FilterFieldSelect)[]
 
 export function getFilterFields(
   type: string | null,

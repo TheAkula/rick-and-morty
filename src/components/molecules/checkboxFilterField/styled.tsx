@@ -10,7 +10,7 @@ export const StyledCheckboxContainer = styled(View)`
   padding-left: 18px;
 `
 
-export const CheckboxTitle = styled(View).attrs({ jusifyContent: 'center' })<{
+export const CheckboxTitle = styled(View)<{
   isLast: boolean
 }>`
   border-bottom-color: ${colors.basic.line};
@@ -18,4 +18,5 @@ export const CheckboxTitle = styled(View).attrs({ jusifyContent: 'center' })<{
   border-bottom-style: solid;
   justify-content: center;
   flex: 1;
+  margin-left: 16px;
 `

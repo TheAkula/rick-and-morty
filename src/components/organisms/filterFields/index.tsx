@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { FlatList, ListRenderItem, SectionListRenderItem } from 'react-native'
 
 import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListHeader'
+import { StyledFlatList } from 'src/components/atoms/flatList'
 import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
 import { FilterSectionList } from 'src/components/molecules/filterSectionList'
 import { SelectFilterField } from 'src/components/molecules/selectFilterField'
