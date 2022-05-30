@@ -9,14 +9,6 @@ query getCharacters($options: FilterCharacter, $i: Int) {
   }
 }
 
-query getCharactersNames($name: String) {
-  characters(filter: { name: $name }) {
-    results {
-      name
-    }
-  }
-}
-
 query getCharacter($id: ID!) {
   character(id: $id) {
     image
@@ -36,5 +28,29 @@ query getCharacter($id: ID!) {
       air_date
       episode
     }
+  }
+}
+
+query getLocations($options: FilterLocation) {
+  locations(filter: $options) {
+    results {
+      name
+      type
+      id
+    }
+  }
+}
+
+query getLocation($id: ID!) {
+  location(id: $id) {
+    residents {
+      id
+      name
+      status
+      image
+    }
+    type
+    name
+    dimension
   }
 }
