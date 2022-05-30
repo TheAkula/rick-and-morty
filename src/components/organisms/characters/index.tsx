@@ -2,6 +2,7 @@ import React from 'react'
 import { ListRenderItem } from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
+import { colors } from 'src/theme/colors'
 
 import { CharactersContainer, StyledCharactersList } from './styled'
 

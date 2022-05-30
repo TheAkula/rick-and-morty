@@ -8,6 +8,10 @@ export const colors = {
     gray: '#C7C7CC',
     headerBg: '#F8F8F8',
     lightGray: '#6E798C',
+    lightTitle: '#00000066',
+    line: '#ccc',
+    inputBg: '#7676801e',
+    inputPlaceholder: '#8f8f90',
   },
   graybase: {
     gray1: '#8E8E93',

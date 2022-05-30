@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { RootNavigation } from 'src/navigation/root'
 
 import { AlertProvider } from './modules/alert-context'
+import { FilterContextProvider } from './modules/filter-context'
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -15,9 +16,11 @@ export const App = () => {
   return (
     <ApolloProvider client={client}>
       <AlertProvider>
-        <NavigationContainer>
-          <RootNavigation />
-        </NavigationContainer>
+        <FilterContextProvider>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+        </FilterContextProvider>
       </AlertProvider>
     </ApolloProvider>
   )

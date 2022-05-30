@@ -1,12 +1,12 @@
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
-import { colors } from './colors'
+import { colors } from '../../theme/colors'
 
 interface StyledTextProps {
   size: number
   color?: string
-  weight?: 'regular' | 'bold' | 'black'
+  weight?: 'regular' | 'bold' | 'black' | 'medium'
 }
 
 export const StyledText = styled(Text)<StyledTextProps>`

@@ -5,7 +5,7 @@ export const StyledCharactersList = styled(FlatList).attrs({
   alignItems: 'center',
 })`
   padding-top: 9px;
-  margin-bottom: 40px;
+  padding-bottom: 40px;
   flex: 1;
 `
 
