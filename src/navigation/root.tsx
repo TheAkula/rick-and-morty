@@ -16,7 +16,7 @@ import { TabBar } from './tabbar'
 export type RootStack = {
   [Routes.MainNavigator]: undefined
   [Routes.FilterScreen]: undefined
-  [Routes.CharacterDetailScreen]: { id: Scalars['ID'] }
+  [Routes.CharacterDetailScreen]: { id: Scalars['ID']; name: string }
 }
 
 const Stack = createNativeStackNavigator<RootStack>()
@@ -34,7 +34,7 @@ export const RootNavigation = () => {
         <Stack.Screen
           name={Routes.CharacterDetailScreen}
           component={Character}
-          options={({ navigation }) => ({
+          options={({ navigation, route }) => ({
             contentStyle: {
               backgroundColor: colors.basic.white,
             },
@@ -42,6 +42,7 @@ export const RootNavigation = () => {
             headerLeft: () => (
               <BackButton pressed={() => navigation.goBack()} />
             ),
+            title: route.params.name,
             headerBackVisible: false,
             headerTitleAlign: 'center',
             headerTitle: (props) => (

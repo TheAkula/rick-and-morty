@@ -44,7 +44,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
       <StyledSelectFilterField>
         <StyledFieldInfoItem>
           <Checkbox active={!!type && !!getValue(fields, type, name)} />
-          <DetailsItem name={name} description={description} isLast={true} />
+          <DetailsItem name={name} description={description} />
         </StyledFieldInfoItem>
         <ArrowContainer>
           <ArrowImage width={8} height={22} />

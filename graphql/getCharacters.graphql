@@ -33,7 +33,7 @@ query getCharacter($id: ID!) {
     }
     episode {
       name
-      created
+      air_date
       episode
     }
   }
