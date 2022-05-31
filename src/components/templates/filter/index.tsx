@@ -42,12 +42,13 @@ export const Filter = () => {
             {props.children}
           </StyledText>
         ),
-        contentStyle: {
-          backgroundColor: colors.basic.white,
-        },
         headerTitleAlign: 'center',
         headerShadowVisible: false,
         headerBackVisible: false,
+        contentStyle: {
+          paddingTop: 20,
+          backgroundColor: colors.basic.white,
+        },
       }}>
       <Stack.Screen
         name="FilterHome"
@@ -66,10 +67,6 @@ export const Filter = () => {
             ) : (
               <View />
             ),
-          contentStyle: {
-            paddingTop: 20,
-            backgroundColor: colors.basic.white,
-          },
         })}
       />
       <Stack.Screen

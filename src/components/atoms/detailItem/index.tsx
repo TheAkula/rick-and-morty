@@ -26,7 +26,7 @@ export const DetailItem: React.FC<EpisodeItemProps> = ({
   const navigation = useNavigation()
 
   const onPressed = useCallback(() => {
-    navigation.navigate(
+    navigation.push(
       isEpisode ? Routes.EpisodeDetailScreen : Routes.LocationDetailScreen,
       {
         id: navigate,

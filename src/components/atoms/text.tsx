@@ -7,6 +7,7 @@ interface StyledTextProps {
   size: number
   color?: string
   weight?: 'regular' | 'bold' | 'black' | 'medium'
+  align?: 'center' | 'left' | 'right'
 }
 
 export const StyledText = styled(Text)<StyledTextProps>`
@@ -16,4 +17,5 @@ export const StyledText = styled(Text)<StyledTextProps>`
     weight
       ? 'Roboto-' + weight[0].toUpperCase() + weight.slice(1)
       : 'Roboto-Regular'};
+  text-align: ${({ align }) => (align ? align : 'left')};
 `

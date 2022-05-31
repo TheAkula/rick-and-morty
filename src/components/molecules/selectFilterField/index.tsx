@@ -30,7 +30,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
   const navigation = useNavigation()
 
   const onPressed = () => {
-    navigation.navigate('Select', {
+    navigation.push('Select', {
       title: name,
     })
   }

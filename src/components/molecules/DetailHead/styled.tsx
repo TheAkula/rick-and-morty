@@ -4,6 +4,6 @@ import { colors } from 'src/theme/colors'
 
 export const StyledDetailHead = styled.View`
   background-color: ${colors.graybase.gray6};
-  padding: 20px 0;
+  padding: 20px 22px;
   align-items: center;
 `

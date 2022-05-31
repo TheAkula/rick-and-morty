@@ -21,7 +21,7 @@ export const DetailHead: React.FC<LocationHeadProps> = ({
       <StyledText size={11} color={colors.basic.lightGray}>
         {type}
       </StyledText>
-      <StyledText size={28} weight="bold">
+      <StyledText size={28} weight="bold" align="center">
         {name}
       </StyledText>
       <StyledText size={13} color={colors.graybase.gray1} weight="black">

@@ -22,6 +22,9 @@ export const TabBar = () => {
   return (
     <Tab.Navigator
       initialRouteName={Routes.CharacterScreen}
+      sceneContainerStyle={{
+        backgroundColor: colors.basic.white,
+      }}
       screenOptions={{
         header: (props) => <Header {...props} />,
         headerStyle: {

@@ -29,7 +29,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
   const navigation = useNavigation()
 
   const onPressed = () => {
-    navigation.navigate(Routes.CharacterDetailScreen, {
+    navigation.push(Routes.CharacterDetailScreen, {
       id,
       name,
     })
