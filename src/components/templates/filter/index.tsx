@@ -1,19 +1,36 @@
 import React from 'react'
 import { View } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useNavigation as useNativeNavigation } from '@react-navigation/native'
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack'
 
 import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
 import { FilterFields } from 'src/components/organisms/filterFields'
 import { FilterSelect } from 'src/components/organisms/filterSelect'
 import { useFilterContext } from 'src/modules/filter-context'
-import { useNavigation } from 'src/navigation/routes'
-import { Routes } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { Button } from 'src/ui/button'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
 
 const Stack = createNativeStackNavigator()
+
+export enum FilterRoutes {
+  Home = 'Home',
+  Select = 'Select',
+}
+
+type FilterParamList = {
+  [FilterRoutes.Home]: undefined
+  [FilterRoutes.Select]: { title: string }
+}
+
+export const useNavigation = () =>
+  useNativeNavigation<
+    NativeStackNavigationProp<FilterParamList, FilterRoutes>
+  >()
 
 export const Filter = () => {
   const { apply, fields, clearFields, type } = useFilterContext()
@@ -28,10 +45,7 @@ export const Filter = () => {
     clearFields()
   }
 
-  const onGoBack = () =>
-    navigation.navigate(Routes.FilterScreen, {
-      screen: 'FilterHome',
-    })
+  const onGoBack = () => navigation.goBack()
 
   return (
     <Stack.Navigator
@@ -51,7 +65,7 @@ export const Filter = () => {
         },
       }}>
       <Stack.Screen
-        name="FilterHome"
+        name={FilterRoutes.Home}
         component={FilterFields}
         options={() => ({
           title: 'Filter',
@@ -70,7 +84,7 @@ export const Filter = () => {
         })}
       />
       <Stack.Screen
-        name="Select"
+        name={FilterRoutes.Select}
         component={FilterSelect}
         options={({ route }) => {
           const title = route.params

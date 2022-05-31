@@ -1,6 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+  BottomTabNavigationProp,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs'
+import { useNavigation as useNativeNavigation } from '@react-navigation/native'
 
 import { Header } from 'src/components/molecules/header'
 import { CharacterScreen } from 'src/modules/character'
@@ -14,14 +18,28 @@ import EpisodeIcon from '../../assets/images/icons/episode.svg'
 import EpisodeActiveIcon from '../../assets/images/icons/episode-active.svg'
 import LocationIcon from '../../assets/images/icons/location.svg'
 import LocationActiveIcon from '../../assets/images/icons/location-active.svg'
-import { Routes } from './routes'
+
+enum TabRoutes {
+  Episode = 'EpisodeScreen',
+  Character = 'CharacterScreen',
+  Location = 'LocationScreen',
+}
+
+type TabParamList = {
+  [TabRoutes.Character]: undefined
+  [TabRoutes.Episode]: undefined
+  [TabRoutes.Location]: undefined
+}
+
+export const useNavigation = () =>
+  useNativeNavigation<BottomTabNavigationProp<TabParamList, TabRoutes>>()
 
 const Tab = createBottomTabNavigator()
 
 export const TabBar = () => {
   return (
     <Tab.Navigator
-      initialRouteName={Routes.CharacterScreen}
+      initialRouteName={TabRoutes.Character}
       sceneContainerStyle={{
         backgroundColor: colors.basic.white,
       }}
@@ -38,7 +56,7 @@ export const TabBar = () => {
         tabBarActiveTintColor: colors.primary,
       }}>
       <Tab.Screen
-        name={Routes.CharacterScreen}
+        name={TabRoutes.Character}
         component={CharacterScreen}
         options={{
           title: 'Character',
@@ -55,7 +73,7 @@ export const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name={Routes.LocationScreen}
+        name={TabRoutes.Location}
         component={LocationScreen}
         options={{
           title: 'Location',
@@ -73,7 +91,7 @@ export const TabBar = () => {
       />
 
       <Tab.Screen
-        name={Routes.EpisodeScreen}
+        name={TabRoutes.Episode}
         component={EpisodeScreen}
         options={{
           title: 'Episode',

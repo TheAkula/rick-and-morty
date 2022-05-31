@@ -1,12 +1,8 @@
 import React from 'react'
 
 import { StyledText } from 'src/components/atoms/text'
-import {
-  Fields,
-  ScreenTypes,
-  useFilterContext,
-} from 'src/modules/filter-context'
-import { Routes, useNavigation } from 'src/navigation/routes'
+import { ScreenTypes, useFilterContext } from 'src/modules/filter-context'
+import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
 
@@ -22,9 +18,7 @@ export const FilterButton: React.FC<FilterButtonProps> = ({ type }) => {
 
   const onPressed = () => {
     updateType(type)
-    navigation.navigate(Routes.FilterScreen, {
-      screen: 'FilterHome',
-    })
+    navigation.goBack()
   }
 
   return (

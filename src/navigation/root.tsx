@@ -7,22 +7,13 @@ import { Character } from 'src/components/templates/character'
 import { EpisodeDetail } from 'src/components/templates/episode'
 import { Filter } from 'src/components/templates/filter'
 import { Location } from 'src/components/templates/location'
-import { Scalars } from 'src/generated/graphql'
 import { useAlertContext } from 'src/modules/alert-context'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 import { getDetailTitle } from 'src/utils/getDetailTitle'
 
-import { Routes } from './routes'
+import { RootStack, Routes } from './routes'
 import { TabBar } from './tabbar'
-
-export type RootStack = {
-  [Routes.MainNavigator]: undefined
-  [Routes.FilterScreen]: undefined
-  [Routes.CharacterDetailScreen]: { id: Scalars['ID']; name: string }
-  [Routes.LocationDetailScreen]: { id: Scalars['ID']; name: string }
-  [Routes.EpisodeDetailScreen]: { id: Scalars['ID']; name: string }
-}
 
 const Stack = createNativeStackNavigator<RootStack>()
 

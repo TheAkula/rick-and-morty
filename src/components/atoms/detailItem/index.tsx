@@ -29,7 +29,7 @@ export const DetailItem: React.FC<EpisodeItemProps> = ({
     navigation.push(
       isEpisode ? Routes.EpisodeDetailScreen : Routes.LocationDetailScreen,
       {
-        id: navigate,
+        id: navigate || '',
         name: description,
       },
     )

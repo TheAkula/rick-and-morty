@@ -6,7 +6,7 @@ import { LocationItem } from 'src/components/molecules/locationItem'
 import { Location, useGetLocationsQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
 
-import { Separator, StyledFlatList } from './styled'
+import { StyledFlatList } from './styled'
 
 export const Locations = () => {
   const { appliedFields } = useFilterContext()

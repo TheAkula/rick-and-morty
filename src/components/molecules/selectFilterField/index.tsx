@@ -1,14 +1,14 @@
 import React from 'react'
-import { TouchableWithoutFeedback, View } from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { DetailItem } from 'src/components/atoms/detailItem'
+import { FilterRoutes, useNavigation } from 'src/components/templates/filter'
 import {
   FilterFieldType,
   getValue,
   useFilterContext,
 } from 'src/modules/filter-context'
-import { useNavigation } from 'src/navigation/routes'
 
 import ArrowImage from '../../../../assets/images/icons/arrow-right.svg'
 import {
@@ -30,7 +30,7 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
   const navigation = useNavigation()
 
   const onPressed = () => {
-    navigation.push('Select', {
+    navigation.push(FilterRoutes.Select, {
       title: name,
     })
   }

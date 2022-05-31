@@ -22,7 +22,7 @@ export const LocationItem: React.FC<LocaitonItemProps> = ({
   const navigation = useNavigation()
 
   const onPressedHandler = () => {
-    navigation.navigate(Routes.LocationDetailScreen, {
+    navigation.push(Routes.LocationDetailScreen, {
       id,
       name,
     })
