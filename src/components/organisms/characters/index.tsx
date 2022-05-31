@@ -1,42 +1,33 @@
 import React from 'react'
-import { ListRenderItem, Text } from 'react-native'
+import { ListRenderItem, View } from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
-import { useGetCharactersQuery } from 'src/generated/graphql'
-import { useFilterContext } from 'src/modules/filter-context'
-import { ScreenTypes } from 'src/modules/filter-context'
+import { GetCharactersQuery } from 'src/generated/graphql'
 
-import { CharactersContainer, StyledCharactersList } from './styled'
+import { StyledCharactersList } from './styled'
 
-export const Characters = () => {
-  const { appliedFields } = useFilterContext()
+interface CharactersProps {
+  characters: NonNullable<GetCharactersQuery['characters']>['results']
+  topElement?: React.ComponentType<any> | React.ReactElement<any, any>
+}
 
-  const { loading, error, data } = useGetCharactersQuery({
-    variables: {
-      options: appliedFields[ScreenTypes.character],
-    },
-  })
-
-  if (error) {
-    return <Text>{error.message}</Text>
-  }
-
-  if (loading) {
-    return <Text>Loading...</Text>
-  }
-
+export const Characters: React.FC<CharactersProps> = ({
+  characters,
+  topElement,
+}) => {
   const renderItem: ListRenderItem<any> = ({ item }) => (
     <CharacterCard {...item} key={item.id} />
   )
 
   return (
-    <CharactersContainer>
+    <View>
       <StyledCharactersList
-        data={data?.characters?.results}
+        data={characters}
+        ListHeaderComponent={topElement}
         renderItem={renderItem}
         numColumns={2}
         keyExtractor={(item) => (item as { id: string }).id}
       />
-    </CharactersContainer>
+    </View>
   )
 }

@@ -9,7 +9,9 @@ export enum Routes {
   MainNavigator = 'MainNavigator',
   LocationScreen = 'LocationScreen',
   FilterScreen = 'FilterScreen',
-  CharacterDetailScreen = 'CharacterDetail',
+  CharacterDetailScreen = 'CharacterDetailScreen',
+  LocationDetailScreen = 'LocationDetailScreen',
+  EpisodeDetailScreen = 'EpisodeDetailScreen',
 }
 
 export const useNavigation = () =>

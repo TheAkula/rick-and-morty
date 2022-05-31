@@ -7,7 +7,11 @@ import { Scalars } from 'src/generated/graphql'
 import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
-import { StyledCharacterCard, StyledCharacterCardInfo } from './styled'
+import {
+  CharacterCardContainer,
+  StyledCharacterCard,
+  StyledCharacterCardInfo,
+} from './styled'
 
 interface CharacterCardProps {
   image: string
@@ -33,17 +37,19 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
 
   return (
     <TouchableOpacity onPress={onPressed}>
-      <StyledCharacterCard>
-        <CharacterCardImg source={{ uri: image }} />
-        <StyledCharacterCardInfo>
-          <StyledText size={11} color={colors.basic.lightGray}>
-            {status}
-          </StyledText>
-          <StyledText size={17} weight={'black'}>
-            {name}
-          </StyledText>
-        </StyledCharacterCardInfo>
-      </StyledCharacterCard>
+      <CharacterCardContainer collapsable={false}>
+        <StyledCharacterCard>
+          <CharacterCardImg source={{ uri: image }} />
+          <StyledCharacterCardInfo>
+            <StyledText size={11} color={colors.basic.lightGray}>
+              {status}
+            </StyledText>
+            <StyledText size={17} weight={'black'}>
+              {name}
+            </StyledText>
+          </StyledCharacterCardInfo>
+        </StyledCharacterCard>
+      </CharacterCardContainer>
     </TouchableOpacity>
   )
 }

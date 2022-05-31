@@ -22,8 +22,10 @@ query getCharacter($id: ID!) {
     type
     location {
       name
+      id
     }
     episode {
+      id
       name
       air_date
       episode

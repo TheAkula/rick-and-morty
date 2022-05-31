@@ -234,9 +234,14 @@ export type GetCharacterQuery = {
     species?: string | null
     type?: string | null
     origin?: { __typename?: 'Location'; name?: string | null } | null
-    location?: { __typename?: 'Location'; name?: string | null } | null
+    location?: {
+      __typename?: 'Location'
+      name?: string | null
+      id?: string | null
+    } | null
     episode: Array<{
       __typename?: 'Episode'
+      id?: string | null
       name?: string | null
       air_date?: string | null
       episode?: string | null
@@ -363,8 +368,10 @@ export const GetCharacterDocument = gql`
       type
       location {
         name
+        id
       }
       episode {
+        id
         name
         air_date
         episode

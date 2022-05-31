@@ -38,7 +38,11 @@ export const Character = ({ route }: Props) => {
         { name: 'gender', data: data?.character?.origin?.name },
         { name: 'origin', data: data?.character?.origin?.name },
         { name: 'type', data: data?.character?.type },
-        { name: 'location', data: data?.character?.location?.name },
+        {
+          name: 'location',
+          data: data?.character?.location?.name,
+          navigate: data?.character?.location?.id,
+        },
       ],
     },
     {
@@ -49,7 +53,7 @@ export const Character = ({ route }: Props) => {
 
   const renderDetailsItem: ListRenderItem<
     | Omit<Episode, 'characters'>
-    | { name: string; data: string | null | undefined }
+    | { name: string; data: string | null | undefined; navigate?: string }
   > = ({ item }) => {
     if (isEpisode(item)) {
       return (
@@ -57,13 +61,19 @@ export const Character = ({ route }: Props) => {
           title={item.episode || ''}
           description={item.name || ''}
           date={item.air_date || ''}
-          navigate={true}
+          navigate={item.id || ''}
           isEpisode={true}
         />
       )
     }
 
-    return <DetailItem title={item.name || ''} description={item.data || ''} />
+    return (
+      <DetailItem
+        title={item.name || ''}
+        description={item.data || ''}
+        navigate={item.navigate ? item.navigate : ''}
+      />
+    )
   }
 
   return data?.character ? (
