@@ -35,7 +35,7 @@ export const Character = ({ route }: Props) => {
     {
       title: 'Informations',
       data: [
-        { name: 'gender', data: data?.character?.origin?.name },
+        { name: 'gender', data: data?.character?.gender },
         { name: 'origin', data: data?.character?.origin?.name },
         { name: 'type', data: data?.character?.type },
         {

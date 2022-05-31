@@ -42,10 +42,10 @@ export const Filter = () => {
             {props.children}
           </StyledText>
         ),
-        headerTitleAlign: 'center',
         contentStyle: {
           backgroundColor: colors.basic.white,
         },
+        headerTitleAlign: 'center',
         headerShadowVisible: false,
         headerBackVisible: false,
       }}>
