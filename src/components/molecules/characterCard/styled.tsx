@@ -7,7 +7,6 @@ export const StyledCharacterCard = styled(View)`
   width: 163px;
   border-radius: 8px;
   overflow: hidden;
-  margin-right: 17px;
   margin-bottom: 20px;
 `
 
@@ -18,4 +17,8 @@ export const StyledCharacterCardInfo = styled(View)`
   border-top-width: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+`
+
+export const CharacterCardContainer = styled.View`
+  width: 50%;
 `
