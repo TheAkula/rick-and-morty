@@ -1,4 +1,5 @@
 import React from 'react'
+import CharacterBg from 'assets/images/character-bg.png'
 
 import { StyledText } from 'src/components/atoms/text'
 import { GetCharacterQuery } from 'src/generated/graphql'
@@ -19,8 +20,7 @@ export const CharacterDetailCard: React.FC<GetCharacterQuery['character']> = ({
 }) => {
   return (
     <StyledCardContainer>
-      <StyledCharacterDetailCard
-        source={require('../../../../assets/images/character-bg.png')}>
+      <StyledCharacterDetailCard source={CharacterBg}>
         <ImageContainer>
           {image && (
             <StyledImage source={{ uri: image }} width={130} height={130} />

@@ -4,6 +4,7 @@ import { getHeaderTitle } from '@react-navigation/elements'
 
 import { FilterButton } from 'src/components/atoms/filterButton'
 import { StyledText } from 'src/components/atoms/text'
+import { ScreenTypes } from 'src/modules/filter-context'
 
 import { StyledTabHeader, StyledTabHeaderTitle } from './styled'
 
@@ -18,7 +19,7 @@ export const Header: React.FC<BottomTabHeaderProps> = ({ route, options }) => {
         </StyledText>
       </StyledTabHeaderTitle>
       {options && options.title && (
-        <FilterButton type={options.title.toLowerCase()} />
+        <FilterButton type={options.title.toLowerCase() as ScreenTypes} />
       )}
     </StyledTabHeader>
   )

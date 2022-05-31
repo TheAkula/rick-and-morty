@@ -39,7 +39,7 @@ export const Locations = () => {
   }
 
   return data ? (
-    <StyledFlatList
+    <StyledFlatList<React.ElementType>
       data={data.locations?.results}
       renderItem={renderLocations}
       numColumns={2}

@@ -1,10 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { useNavigation as useNativeNavigation } from '@react-navigation/native'
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
@@ -12,25 +8,11 @@ import { FilterFields } from 'src/components/organisms/filterFields'
 import { FilterSelect } from 'src/components/organisms/filterSelect'
 import { useFilterContext } from 'src/modules/filter-context'
 import { colors } from 'src/theme/colors'
+import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
 import { Button } from 'src/ui/button'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
 
 const Stack = createNativeStackNavigator()
-
-export enum FilterRoutes {
-  Home = 'Home',
-  Select = 'Select',
-}
-
-type FilterParamList = {
-  [FilterRoutes.Home]: undefined
-  [FilterRoutes.Select]: { title: string }
-}
-
-export const useNavigation = () =>
-  useNativeNavigation<
-    NativeStackNavigationProp<FilterParamList, FilterRoutes>
-  >()
 
 export const Filter = () => {
   const { apply, fields, clearFields, type } = useFilterContext()

@@ -3,12 +3,12 @@ import { TouchableWithoutFeedback } from 'react-native'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { DetailItem } from 'src/components/atoms/detailItem'
-import { FilterRoutes, useNavigation } from 'src/components/templates/filter'
 import {
   FilterFieldType,
   getValue,
   useFilterContext,
 } from 'src/modules/filter-context'
+import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
 
 import ArrowImage from '../../../../assets/images/icons/arrow-right.svg'
 import {

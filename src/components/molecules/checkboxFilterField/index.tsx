@@ -35,7 +35,7 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
 
   return (
     <TouchableWithoutFeedback onPress={onChangedHandler}>
-      <StyledCheckboxContainer>
+      <StyledCheckboxContainer isLast={isLast}>
         <RowCenter>
           <Checkbox active={!!type && getValue(fields, type, title) === name} />
         </RowCenter>

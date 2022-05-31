@@ -1,16 +1,29 @@
 import React from 'react'
-import { ListRenderItem, SectionList, Text, View } from 'react-native'
+import { SectionList, SectionListRenderItem, Text, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 import { DetailItem } from 'src/components/atoms/detailItem'
 import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
 import { Episode, useGetCharacterQuery } from 'src/generated/graphql'
-import { RootStack } from 'src/navigation/root'
 import { Routes } from 'src/navigation/routes'
 
+import { RootStack } from '../../../navigation/routes'
 import { DetailsHeader } from '../../atoms/detailsHeader'
 import { Line } from '../../atoms/line'
 import { CharacterDetailCard } from '../../molecules/characterDetailCard'
+
+type CharacterInformation = {
+  name: string
+  data: string | null | undefined
+  navigate?: string | null | undefined
+}
+
+type CharacterEpisode = Omit<Episode, 'characters'>
+
+interface CharacterDataItem {
+  title: string
+  data: (CharacterInformation | CharacterEpisode | null)[]
+}
 
 type Props = NativeStackScreenProps<RootStack, Routes.CharacterDetailScreen>
 
@@ -32,7 +45,7 @@ export const Character = ({ route }: Props) => {
     return <Text>{error.message}</Text>
   }
 
-  const characterData = [
+  const characterData: CharacterDataItem[] = [
     {
       title: 'Informations',
       data: [
@@ -52,10 +65,14 @@ export const Character = ({ route }: Props) => {
     },
   ]
 
-  const renderDetailsItem: ListRenderItem<
-    | Omit<Episode, 'characters'>
-    | { name: string; data: string | null | undefined; navigate?: string }
+  const renderDetailsItem: SectionListRenderItem<
+    CharacterEpisode | CharacterInformation | null,
+    CharacterDataItem
   > = ({ item }) => {
+    if (!item) {
+      return <View />
+    }
+
     if (isEpisode(item)) {
       return (
         <DetailItem

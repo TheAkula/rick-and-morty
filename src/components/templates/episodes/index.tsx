@@ -16,6 +16,16 @@ import { useFilterContext } from 'src/modules/filter-context'
 import { getEpisodesSections } from 'src/utils/getEpisodesSections'
 import { EpisodeHome } from 'src/utils/getEpisodesSections'
 
+type RenderSectionHeaderProps = {
+  section: SectionListData<
+    EpisodeHome,
+    {
+      title: number
+      data: EpisodeHome[]
+    }
+  >
+}
+
 export const Episodes = () => {
   const { appliedFields } = useFilterContext()
 
@@ -35,7 +45,7 @@ export const Episodes = () => {
 
   const renderEpisodeItem: SectionListRenderItem<
     EpisodeHome,
-    { title: string; data: EpisodeHome[] }
+    { title: number; data: EpisodeHome[] }
   > = ({ item }) => {
     return (
       <DetailItem
@@ -48,16 +58,7 @@ export const Episodes = () => {
     )
   }
 
-  const renderEpisodeHeader = ({
-    section,
-  }: {
-    info: {
-      section: SectionListData<
-        EpisodeHome,
-        { title: string; data: EpisodeHome[] }
-      >
-    }
-  }) => {
+  const renderEpisodeHeader = ({ section }: RenderSectionHeaderProps) => {
     return (
       <View>
         <DetailsHeader>Season {section.title}</DetailsHeader>

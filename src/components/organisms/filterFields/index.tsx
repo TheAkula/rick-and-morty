@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react'
-import { FlatList, ListRenderItem, SectionListRenderItem } from 'react-native'
+import { FlatList, ListRenderItem, View } from 'react-native'
 
 import { FilterSectionListHeader } from 'src/components/atoms/filterSectionListHeader'
-import { StyledFlatList } from 'src/components/atoms/flatList'
 import { CheckboxFilterField } from 'src/components/molecules/checkboxFilterField'
-import { FilterSectionList } from 'src/components/molecules/filterSectionList'
 import { SelectFilterField } from 'src/components/molecules/selectFilterField'
-import { FilterFieldType, useFilterContext } from 'src/modules/filter-context'
+import { useFilterContext } from 'src/modules/filter-context'
 import {
   FilterFieldCheck,
   FilterFieldSelect,
@@ -16,29 +14,24 @@ import {
 export const FilterFields = () => {
   const { type } = useFilterContext()
 
-  const renderSectionHeader: SectionListRenderItem<
-    FilterFieldType,
-    FilterFieldCheck
-  > = ({ section: { title } }) => {
-    return <FilterSectionListHeader title={title} />
-  }
-
   const renderField: ListRenderItem<FilterFieldSelect | FilterFieldCheck> = ({
     item,
   }) => {
     if (item.type === 'check') {
       return (
-        <FilterSectionList
-          sections={[item]}
-          renderSectionHeader={renderSectionHeader}
-          renderItem={(props) => (
-            <CheckboxFilterField
-              isLast={props.index + 1 === item.data.length}
-              title={item.title}
-              name={props.item as string}
-            />
-          )}
-        />
+        <View>
+          <FilterSectionListHeader title={item.title} />
+          {item.data.map((field, index) => {
+            return (
+              <CheckboxFilterField
+                key={item.title + field}
+                isLast={index + 1 === item.data.length}
+                title={item.title}
+                name={field}
+              />
+            )
+          })}
+        </View>
       )
     }
 

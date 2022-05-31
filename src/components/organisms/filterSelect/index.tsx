@@ -1,19 +1,14 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Route } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import {
-  FilterFieldType,
-  getValue,
-  useFilterContext,
-} from 'src/modules/filter-context'
+import { getValue, useFilterContext } from 'src/modules/filter-context'
+import { FilterParamList, FilterRoutes } from 'src/types/filterNavigation'
 import { Input } from 'src/ui/input'
 
-export const FilterSelect = ({
-  route,
-}: {
-  route: Route<'Select', { title: FilterFieldType }>
-}) => {
+type Props = NativeStackScreenProps<FilterParamList, FilterRoutes.Select>
+
+export const FilterSelect = ({ route }: Props) => {
   const { title } = route.params
   const { fields, updateField, type } = useFilterContext()
 
