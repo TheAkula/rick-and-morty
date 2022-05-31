@@ -1,8 +1,8 @@
-import React from 'react'
-import { ListRenderItem, View } from 'react-native'
+import React, { ComponentType } from 'react'
+import { FlatListProps, ListRenderItem, View } from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
-import { GetCharactersQuery } from 'src/generated/graphql'
+import { Character, GetCharactersQuery } from 'src/generated/graphql'
 
 import { StyledCharactersList } from './styled'
 
@@ -15,13 +15,35 @@ export const Characters: React.FC<CharactersProps> = ({
   characters,
   topElement,
 }) => {
-  const renderItem: ListRenderItem<any> = ({ item }) => (
-    <CharacterCard {...item} key={item.id} />
-  )
+  const renderItem: ListRenderItem<Pick<
+    Character,
+    '__typename' | 'id' | 'name' | 'status' | 'image'
+  > | null> = ({ item }) => {
+    if (!item) {
+      return <View />
+    }
 
-  return (
+    return (
+      <CharacterCard
+        image={item.image || ''}
+        name={item.name || ''}
+        status={item.status || ''}
+        id={item.id || ''}
+        key={item.id}
+      />
+    )
+  }
+
+  return characters ? (
     <View>
-      <StyledCharactersList
+      <StyledCharactersList<
+        ComponentType<
+          { data: CharactersProps['characters'] } & FlatListProps<Pick<
+            Character,
+            '__typename' | 'id' | 'name' | 'status' | 'image'
+          > | null>
+        >
+      >
         data={characters}
         ListHeaderComponent={topElement}
         renderItem={renderItem}
@@ -29,5 +51,7 @@ export const Characters: React.FC<CharactersProps> = ({
         keyExtractor={(item) => (item as { id: string }).id}
       />
     </View>
+  ) : (
+    <View />
   )
 }

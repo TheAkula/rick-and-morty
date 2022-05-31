@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 import { useGetCharactersQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
 import { ScreenTypes } from 'src/modules/filter-context'
+import { Spinner } from 'src/ui/spinner'
 
 import { Characters } from '../organisms/characters'
 
@@ -26,7 +27,7 @@ export const CharactersTemplate = () => {
   }
 
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner />
   }
 
   return (

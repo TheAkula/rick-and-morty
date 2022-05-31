@@ -45,8 +45,10 @@ export const TabBar = () => {
       }}
       screenOptions={{
         header: (props) => <Header {...props} />,
-        headerStyle: {
-          height: 96,
+        tabBarStyle: {
+          shadowColor: 'transparent',
+          backgroundColor: colors.basic.headerBg,
+          borderColor: colors.basic.gray,
         },
         tabBarLabelStyle: {
           fontSize: 10,

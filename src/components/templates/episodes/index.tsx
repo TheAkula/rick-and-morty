@@ -13,6 +13,7 @@ import { Line } from 'src/components/atoms/line'
 import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
 import { useGetEpisodesQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
+import { Spinner } from 'src/ui/spinner'
 import { getEpisodesSections } from 'src/utils/getEpisodesSections'
 import { EpisodeHome } from 'src/utils/getEpisodesSections'
 
@@ -40,7 +41,7 @@ export const Episodes = () => {
   }
 
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner />
   }
 
   const renderEpisodeItem: SectionListRenderItem<

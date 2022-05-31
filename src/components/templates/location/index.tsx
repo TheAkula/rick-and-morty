@@ -8,6 +8,7 @@ import { Characters } from 'src/components/organisms/characters'
 import { useGetLocationQuery } from 'src/generated/graphql'
 import { RootStack } from 'src/navigation/routes'
 import { Routes } from 'src/navigation/routes'
+import { Spinner } from 'src/ui/spinner'
 
 import { StyledLocation } from './styled'
 
@@ -22,7 +23,7 @@ export const Location = ({ route }: Props) => {
   }
 
   if (loading || !data?.location) {
-    return <Text>Loading...</Text>
+    return <Spinner />
   }
 
   const { name, dimension, type, residents } = data?.location

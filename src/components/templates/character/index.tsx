@@ -6,6 +6,7 @@ import { DetailItem } from 'src/components/atoms/detailItem'
 import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
 import { Episode, useGetCharacterQuery } from 'src/generated/graphql'
 import { Routes } from 'src/navigation/routes'
+import { Spinner } from 'src/ui/spinner'
 
 import { RootStack } from '../../../navigation/routes'
 import { DetailsHeader } from '../../atoms/detailsHeader'
@@ -38,7 +39,7 @@ export const Character = ({ route }: Props) => {
   })
 
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner />
   }
 
   if (error) {

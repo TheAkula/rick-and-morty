@@ -5,6 +5,7 @@ import { Text } from 'react-native-svg'
 import { LocationItem } from 'src/components/molecules/locationItem'
 import { Location, useGetLocationsQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
+import { Spinner } from 'src/ui/spinner'
 
 import { StyledFlatList } from './styled'
 
@@ -18,7 +19,7 @@ export const Locations = () => {
   })
 
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Spinner />
   }
 
   if (error) {
