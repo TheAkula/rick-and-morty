@@ -3,6 +3,7 @@ import { ListRenderItem, SectionList, Text, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 import { DetailItem } from 'src/components/atoms/detailItem'
+import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
 import { Episode, useGetCharacterQuery } from 'src/generated/graphql'
 import { RootStack } from 'src/navigation/root'
 import { Routes } from 'src/navigation/routes'
@@ -81,7 +82,11 @@ export const Character = ({ route }: Props) => {
       <SectionList
         renderItem={renderDetailsItem}
         ListHeaderComponent={<CharacterDetailCard {...data?.character} />}
-        renderSectionFooter={() => <Line />}
+        renderSectionFooter={() => (
+          <SectionsSeparator>
+            <Line />
+          </SectionsSeparator>
+        )}
         ItemSeparatorComponent={() => <Line ml={16} />}
         sections={characterData}
         renderSectionHeader={({ section: { title } }) => {
