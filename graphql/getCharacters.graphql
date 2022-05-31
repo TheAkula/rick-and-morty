@@ -56,3 +56,28 @@ query getLocation($id: ID!) {
     dimension
   }
 }
+
+query getEpisodes($options: FilterEpisode) {
+  episodes(filter: $options) {
+    results {
+      id
+      name
+      air_date
+      episode
+    }
+  }
+}
+
+query getEpisode($id: ID!) {
+  episode(id: $id) {
+    name
+    air_date
+    episode
+    characters {
+      id
+      name
+      status
+      image
+    }
+  }
+}

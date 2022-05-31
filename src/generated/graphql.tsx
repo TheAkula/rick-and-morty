@@ -287,6 +287,45 @@ export type GetLocationQuery = {
   } | null
 }
 
+export type GetEpisodesQueryVariables = Exact<{
+  options?: InputMaybe<FilterEpisode>
+}>
+
+export type GetEpisodesQuery = {
+  __typename?: 'Query'
+  episodes?: {
+    __typename?: 'Episodes'
+    results?: Array<{
+      __typename?: 'Episode'
+      id?: string | null
+      name?: string | null
+      air_date?: string | null
+      episode?: string | null
+    } | null> | null
+  } | null
+}
+
+export type GetEpisodeQueryVariables = Exact<{
+  id: Scalars['ID']
+}>
+
+export type GetEpisodeQuery = {
+  __typename?: 'Query'
+  episode?: {
+    __typename?: 'Episode'
+    name?: string | null
+    air_date?: string | null
+    episode?: string | null
+    characters: Array<{
+      __typename?: 'Character'
+      id?: string | null
+      name?: string | null
+      status?: string | null
+      image?: string | null
+    } | null>
+  } | null
+}
+
 export const GetCharactersDocument = gql`
   query getCharacters($options: FilterCharacter, $i: Int) {
     characters(filter: $options, page: $i) {
@@ -564,4 +603,135 @@ export type GetLocationLazyQueryHookResult = ReturnType<
 export type GetLocationQueryResult = Apollo.QueryResult<
   GetLocationQuery,
   GetLocationQueryVariables
+>
+export const GetEpisodesDocument = gql`
+  query getEpisodes($options: FilterEpisode) {
+    episodes(filter: $options) {
+      results {
+        id
+        name
+        air_date
+        episode
+      }
+    }
+  }
+`
+
+/**
+ * __useGetEpisodesQuery__
+ *
+ * To run a query within a React component, call `useGetEpisodesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEpisodesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEpisodesQuery({
+ *   variables: {
+ *      options: // value for 'options'
+ *   },
+ * });
+ */
+export function useGetEpisodesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetEpisodesQuery,
+    GetEpisodesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(
+    GetEpisodesDocument,
+    options,
+  )
+}
+
+export function useGetEpisodesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetEpisodesQuery,
+    GetEpisodesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useLazyQuery<GetEpisodesQuery, GetEpisodesQueryVariables>(
+    GetEpisodesDocument,
+    options,
+  )
+}
+export type GetEpisodesQueryHookResult = ReturnType<typeof useGetEpisodesQuery>
+export type GetEpisodesLazyQueryHookResult = ReturnType<
+  typeof useGetEpisodesLazyQuery
+>
+export type GetEpisodesQueryResult = Apollo.QueryResult<
+  GetEpisodesQuery,
+  GetEpisodesQueryVariables
+>
+export const GetEpisodeDocument = gql`
+  query getEpisode($id: ID!) {
+    episode(id: $id) {
+      name
+      air_date
+      episode
+      characters {
+        id
+        name
+        status
+        image
+      }
+    }
+  }
+`
+
+/**
+ * __useGetEpisodeQuery__
+ *
+ * To run a query within a React component, call `useGetEpisodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEpisodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEpisodeQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetEpisodeQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetEpisodeQuery,
+    GetEpisodeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(
+    GetEpisodeDocument,
+    options,
+  )
+}
+
+export function useGetEpisodeLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetEpisodeQuery,
+    GetEpisodeQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useLazyQuery<GetEpisodeQuery, GetEpisodeQueryVariables>(
+    GetEpisodeDocument,
+    options,
+  )
+}
+export type GetEpisodeQueryHookResult = ReturnType<typeof useGetEpisodeQuery>
+export type GetEpisodeLazyQueryHookResult = ReturnType<
+  typeof useGetEpisodeLazyQuery
+>
+export type GetEpisodeQueryResult = Apollo.QueryResult<
+  GetEpisodeQuery,
+  GetEpisodeQueryVariables
 >
