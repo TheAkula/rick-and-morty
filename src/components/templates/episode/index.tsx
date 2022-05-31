@@ -1,27 +1,22 @@
 import React from 'react'
-import {
-  SectionList,
-  SectionListData,
-  SectionListRenderItem,
-  Text,
-  View,
-} from 'react-native'
+import { Text, View } from 'react-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { DetailItem } from 'src/components/atoms/detailItem'
 import { DetailsHeader } from 'src/components/atoms/detailsHeader'
-import { Line } from 'src/components/atoms/line'
-import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
-import { useGetEpisodesQuery } from 'src/generated/graphql'
-import { useFilterContext } from 'src/modules/filter-context'
-import { getEpisodesSections } from 'src/utils/getEpisodesSections'
-import { EpisodeHome } from 'src/utils/getEpisodesSections'
+import { DetailHead } from 'src/components/molecules/detailHead'
+import { Characters } from 'src/components/organisms/characters'
+import { useGetEpisodeQuery } from 'src/generated/graphql'
+import { RootStack } from 'src/navigation/root'
+import { Routes } from 'src/navigation/routes'
 
-export const Episodes = () => {
-  const { appliedFields } = useFilterContext()
+type Props = NativeStackScreenProps<RootStack, Routes.EpisodeDetailScreen>
 
-  const { loading, error, data } = useGetEpisodesQuery({
+export const EpisodeDetail = ({ route }: Props) => {
+  const { id } = route.params
+
+  const { loading, error, data } = useGetEpisodeQuery({
     variables: {
-      options: appliedFields.episode,
+      id,
     },
   })
 
@@ -29,56 +24,27 @@ export const Episodes = () => {
     return <Text>{error.message}</Text>
   }
 
-  if (loading) {
+  if (loading || !data?.episode) {
     return <Text>Loading...</Text>
   }
 
-  const renderEpisodeItem: SectionListRenderItem<
-    EpisodeHome,
-    { title: string; data: EpisodeHome[] }
-  > = ({ item }) => {
-    return (
-      <DetailItem
-        isEpisode={true}
-        title={item.episode || ''}
-        description={item.name || ''}
-        date={item.air_date || ''}
-        navigate={item.id || ''}
-      />
-    )
-  }
-
-  const renderEpisodeHeader = ({
-    section,
-  }: {
-    info: {
-      section: SectionListData<
-        EpisodeHome,
-        { title: string; data: EpisodeHome[] }
-      >
-    }
-  }) => {
-    return (
-      <View>
-        <DetailsHeader>Season {section.title}</DetailsHeader>
-        <Line />
-      </View>
-    )
-  }
-
-  const sections = getEpisodesSections(data?.episodes?.results)
+  const { name, episode, air_date } = data?.episode
 
   return (
-    <SectionList
-      renderItem={renderEpisodeItem}
-      sections={sections}
-      renderSectionHeader={renderEpisodeHeader}
-      ItemSeparatorComponent={() => <Line ml={16} />}
-      renderSectionFooter={() => (
-        <SectionsSeparator>
-          <Line />
-        </SectionsSeparator>
-      )}
-    />
+    <View>
+      <Characters
+        characters={data?.episode?.characters}
+        topElement={() => (
+          <View>
+            <DetailHead
+              name={name || ''}
+              desc={episode || ''}
+              type={air_date || ''}
+            />
+            <DetailsHeader>Characters</DetailsHeader>
+          </View>
+        )}
+      />
+    </View>
   )
 }
