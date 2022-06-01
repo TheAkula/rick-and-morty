@@ -15,9 +15,11 @@ import SearchIcon from 'assets/images/icons/search.svg'
 import styled from 'styled-components/native'
 
 import {
+  Fields,
   FilterContext,
   FilterFieldType,
   getValue,
+  ScreenTypes,
 } from 'src/modules/filter-context'
 import { colors } from 'src/theme/colors'
 
@@ -55,6 +57,9 @@ type InputProps = {
   setIsRecording: (s: boolean) => void
   title: FilterFieldType
   isRecording: boolean
+  fields: Fields
+  updateField: (k: string, v: unknown) => void
+  type: ScreenTypes | null
 } & TextInputProps
 
 export class Input extends React.Component<InputProps> {
@@ -78,19 +83,16 @@ export class Input extends React.Component<InputProps> {
   inputRef = React.createRef<TextInput>()
 
   onSpeechStart() {
-    console.log('speech started')
     this.setState({ results: '' })
     this.props.setIsRecording(true)
   }
 
   onSpeechEnd() {
     this.props.setIsRecording(false)
-    console.log('speech ended')
   }
 
   onSpeechResults(e: SpeechResultsEvent) {
-    console.log('speech results')
-    this.setState({ value: e.value })
+    this.props.updateField(this.props.title, e.value ? e.value[0] : '')
   }
 
   onSpeechPartialResults(e: SpeechResultsEvent) {
@@ -107,7 +109,7 @@ export class Input extends React.Component<InputProps> {
 
   _toggleRecognizing() {
     this.setState({ partialResults: [], results: [] })
-    Voice.isRecognizing().then((isR) => {
+    Voice.isRecognizing().then(isR => {
       if (isR) {
         Voice.stop().then(() => {
           this.props.setIsRecording(false)
@@ -120,36 +122,38 @@ export class Input extends React.Component<InputProps> {
 
   render() {
     return (
-      <FilterContext.Consumer>
-        {({ fields, updateField, type }) => (
-          <InputContainer>
-            <StyledInputWrapper>
-              <TouchableWithoutFeedback onPress={this.onPressed.bind(this)}>
-                <SearchIconContainer>
-                  <SearchIcon width={14} height={14} />
-                </SearchIconContainer>
-              </TouchableWithoutFeedback>
-              <StyledTextInput
-                placeholder="Search"
-                {...this.props}
-                value={type ? getValue(fields, type, this.props.title) : ''}
-                onChangeText={(text) => updateField(this.props.title, text)}
-                ref={this.inputRef}
-              />
-              <TouchableWithoutFeedback
-                onPress={this._toggleRecognizing.bind(this)}>
-                <DictationButton>
-                  {this.props.isRecording ? (
-                    <DictationActiveIcon width={20} height={20} />
-                  ) : (
-                    <DictationIcon width={20} height={20} />
-                  )}
-                </DictationButton>
-              </TouchableWithoutFeedback>
-            </StyledInputWrapper>
-          </InputContainer>
-        )}
-      </FilterContext.Consumer>
+      <InputContainer>
+        <StyledInputWrapper>
+          <TouchableWithoutFeedback onPress={this.onPressed.bind(this)}>
+            <SearchIconContainer>
+              <SearchIcon width={14} height={14} />
+            </SearchIconContainer>
+          </TouchableWithoutFeedback>
+          <StyledTextInput
+            placeholder="Search"
+            {...this.props}
+            value={
+              this.props.type
+                ? getValue(this.props.fields, this.props.type, this.props.title)
+                : ''
+            }
+            onChangeText={text =>
+              this.props.updateField(this.props.title, text)
+            }
+            ref={this.inputRef}
+          />
+          <TouchableWithoutFeedback
+            onPress={this._toggleRecognizing.bind(this)}>
+            <DictationButton>
+              {this.props.isRecording ? (
+                <DictationActiveIcon width={20} height={20} />
+              ) : (
+                <DictationIcon width={20} height={20} />
+              )}
+            </DictationButton>
+          </TouchableWithoutFeedback>
+        </StyledInputWrapper>
+      </InputContainer>
     )
   }
 }

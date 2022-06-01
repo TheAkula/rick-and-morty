@@ -7,11 +7,13 @@ import { Input } from 'src/ui/input'
 import { VoiceModal } from 'src/ui/voiceModal'
 
 import { StyledFilterSelect } from './styled'
+import { useFilterContext } from 'src/modules/filter-context'
 
 type Props = NativeStackScreenProps<FilterParamList, FilterRoutes.Select>
 
 export const FilterSelect = ({ route }: Props) => {
   const [isRecording, setIsRecording] = useState(false)
+  const { fields, updateField, type } = useFilterContext()
   const { title } = route.params
 
   return (
@@ -20,6 +22,9 @@ export const FilterSelect = ({ route }: Props) => {
         isRecording={isRecording}
         setIsRecording={(s: boolean) => setIsRecording(s)}
         title={title}
+        fields={fields}
+        updateField={updateField}
+        type={type}
       />
       {isRecording && <VoiceModal />}
     </StyledFilterSelect>
