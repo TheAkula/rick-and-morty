@@ -1,4 +1,5 @@
 {
   "name": "RNtemplate",
-  "displayName": "RNtemplate"
+  "displayName": "RNtemplate",
+  "plugins": ["@react-native-voice/voice"]
 }

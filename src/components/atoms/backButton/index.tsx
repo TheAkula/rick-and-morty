@@ -1,9 +1,9 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
+import ArrowLeftImage from 'assets/images/icons/arrow-left.svg'
 
 import { colors } from 'src/theme/colors'
 
-import ArrowLeftImage from '../../../../assets/images/icons/arrow-left.svg'
 import { StyledText } from '../text'
 import { ImageWrapper, StyledBackButton } from './styled'
 

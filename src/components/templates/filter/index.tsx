@@ -27,8 +27,6 @@ export const Filter = () => {
     clearFields()
   }
 
-  const onGoBack = () => navigation.goBack()
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -49,7 +47,7 @@ export const Filter = () => {
       <Stack.Screen
         name={FilterRoutes.Home}
         component={FilterFields}
-        options={() => ({
+        options={({}) => ({
           title: 'Filter',
           headerRight: () => <Button title="APPLY" onPress={onApply} />,
           headerLeft: () =>
@@ -68,13 +66,15 @@ export const Filter = () => {
       <Stack.Screen
         name={FilterRoutes.Select}
         component={FilterSelect}
-        options={({ route }) => {
-          const title = route.params
-            ? ((route.params as { title: string }).title as string)
+        options={(props) => {
+          const title = props.route.params
+            ? ((props.route.params as { title: string }).title as string)
             : ''
 
           return {
-            headerLeft: () => <BackButton pressed={onGoBack} />,
+            headerLeft: () => (
+              <BackButton pressed={() => props.navigation.goBack()} />
+            ),
             title: title ? title[0].toUpperCase() + title.slice(1) : '',
           }
         }}

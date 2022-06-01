@@ -1,31 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { getValue, useFilterContext } from 'src/modules/filter-context'
 import { FilterParamList, FilterRoutes } from 'src/types/filterNavigation'
 import { Input } from 'src/ui/input'
+import { VoiceModal } from 'src/ui/voiceModal'
+
+import { StyledFilterSelect } from './styled'
 
 type Props = NativeStackScreenProps<FilterParamList, FilterRoutes.Select>
 
 export const FilterSelect = ({ route }: Props) => {
+  const [isRecording, setIsRecording] = useState(false)
   const { title } = route.params
-  const { fields, updateField, type } = useFilterContext()
-
-  const onChangedHandler = (text: string) => {
-    updateField(title, text)
-  }
 
   return (
-    <View>
-      <View>
-        {type && (
-          <Input
-            onChangeText={onChangedHandler}
-            value={getValue(fields, type, title)}
-          />
-        )}
-      </View>
-    </View>
+    <StyledFilterSelect>
+      <Input
+        isRecording={isRecording}
+        setIsRecording={(s: boolean) => setIsRecording(s)}
+        title={title}
+      />
+      {isRecording && <VoiceModal />}
+    </StyledFilterSelect>
   )
 }

@@ -76,7 +76,7 @@ const initialState: InitialState = {
   apply: () => undefined,
 }
 
-const FilterContext = React.createContext(initialState)
+export const FilterContext = React.createContext(initialState)
 
 const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
   switch (action.type) {

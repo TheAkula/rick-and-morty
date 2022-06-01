@@ -3,6 +3,7 @@ export const colors = {
   basic: {
     adding: '#34C759',
     destructive: '#FF3B30',
+    red: '#ff0000',
     black: '#081F32',
     white: '#FFFFFF',
     gray: '#C7C7CC',
