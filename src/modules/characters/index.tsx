@@ -1,17 +1,16 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
+import { Characters } from 'src/components/organisms/characters'
+import { PaginatedScreen } from 'src/components/templates/paginatedScreen'
 import { useGetCharactersQuery } from 'src/generated/graphql'
 import { ScreenTypes, useFilterContext } from 'src/modules/filter-context'
-
-import { Characters } from '../../organisms/characters'
-import { PaginatedScreen } from '../paginatedScreen'
 
 const CharactersContainer = styled.View`
   padding-top: 20px;
 `
 
-export const CharactersTemplate = () => {
+export const CharactersScreen = () => {
   const { appliedFields } = useFilterContext()
 
   return (

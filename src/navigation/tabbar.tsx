@@ -7,9 +7,9 @@ import {
 import { useNavigation as useNativeNavigation } from '@react-navigation/native'
 
 import { Header } from 'src/components/molecules/header'
-import { CharacterScreen } from 'src/modules/character'
-import { EpisodeScreen } from 'src/modules/episode'
-import { LocationScreen } from 'src/modules/location'
+import { CharactersScreen } from 'src/modules/characters'
+import { EpisodesScreen } from 'src/modules/episodes'
+import { LocationsScreen } from 'src/modules/locations'
 import { baseTheme } from 'src/theme/base'
 
 import CharacterIcon from '../../assets/images/icons/character.svg'
@@ -59,7 +59,7 @@ export const TabBar = () => {
       }}>
       <Tab.Screen
         name={TabRoutes.Character}
-        component={CharacterScreen}
+        component={CharactersScreen}
         options={{
           title: 'Character',
           tabBarIcon: ({ focused }) =>
@@ -76,7 +76,7 @@ export const TabBar = () => {
       />
       <Tab.Screen
         name={TabRoutes.Location}
-        component={LocationScreen}
+        component={LocationsScreen}
         options={{
           title: 'Location',
           tabBarIcon: ({ focused }) =>
@@ -94,7 +94,7 @@ export const TabBar = () => {
 
       <Tab.Screen
         name={TabRoutes.Episode}
-        component={EpisodeScreen}
+        component={EpisodesScreen}
         options={{
           title: 'Episode',
           tabBarIcon: ({ focused }) =>

@@ -15,7 +15,7 @@ import { useFilterContext } from 'src/modules/filter-context'
 import { getEpisodesSections } from 'src/utils/getEpisodesSections'
 import { EpisodeHome } from 'src/utils/getEpisodesSections'
 
-import { PaginatedScreen } from '../paginatedScreen'
+import { PaginatedScreen } from '../../components/templates/paginatedScreen'
 
 type RenderSectionHeaderProps = {
   section: SectionListData<
@@ -27,7 +27,7 @@ type RenderSectionHeaderProps = {
   >
 }
 
-export const Episodes = () => {
+export const EpisodesScreen = () => {
   const { appliedFields } = useFilterContext()
 
   const renderEpisodeItem: SectionListRenderItem<

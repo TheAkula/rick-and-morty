@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, ListRenderItem } from 'react-native'
+import { ListRenderItem } from 'react-native'
 
 import { LocationItem } from 'src/components/molecules/locationItem'
 import { PaginatedScreen } from 'src/components/templates/paginatedScreen'
@@ -8,12 +8,15 @@ import { useFilterContext } from 'src/modules/filter-context'
 
 import { StyledFlatList } from './styled'
 
-type LocationItem = Pick<Location, 'type' | 'name' | 'id' | '__typename'> | null
+type LocationItemType = Pick<
+  Location,
+  'type' | 'name' | 'id' | '__typename'
+> | null
 
-export const Locations = () => {
+export const LocationsScreen = () => {
   const { appliedFields } = useFilterContext()
 
-  const renderLocations: ListRenderItem<LocationItem> = ({ item }) => {
+  const renderLocations: ListRenderItem<LocationItemType> = ({ item }) => {
     return (
       <LocationItem
         name={item?.name || ''}
