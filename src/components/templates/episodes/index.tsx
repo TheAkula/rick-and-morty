@@ -3,7 +3,6 @@ import {
   SectionList,
   SectionListData,
   SectionListRenderItem,
-  Text,
   View,
 } from 'react-native'
 
@@ -13,9 +12,10 @@ import { Line } from 'src/components/atoms/line'
 import { SectionsSeparator } from 'src/components/atoms/sectionsSeparator'
 import { useGetEpisodesQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
-import { Spinner } from 'src/ui/spinner'
 import { getEpisodesSections } from 'src/utils/getEpisodesSections'
 import { EpisodeHome } from 'src/utils/getEpisodesSections'
+
+import { PaginatedScreen } from '../paginatedScreen'
 
 type RenderSectionHeaderProps = {
   section: SectionListData<
@@ -29,20 +29,6 @@ type RenderSectionHeaderProps = {
 
 export const Episodes = () => {
   const { appliedFields } = useFilterContext()
-
-  const { loading, error, data } = useGetEpisodesQuery({
-    variables: {
-      options: appliedFields.episode,
-    },
-  })
-
-  if (error) {
-    return <Text>{error.message}</Text>
-  }
-
-  if (loading) {
-    return <Spinner />
-  }
 
   const renderEpisodeItem: SectionListRenderItem<
     EpisodeHome,
@@ -68,19 +54,33 @@ export const Episodes = () => {
     )
   }
 
-  const sections = getEpisodesSections(data?.episodes?.results)
-
   return (
-    <SectionList
-      renderItem={renderEpisodeItem}
-      sections={sections}
-      renderSectionHeader={renderEpisodeHeader}
-      ItemSeparatorComponent={() => <Line ml={16} />}
-      renderSectionFooter={() => (
-        <SectionsSeparator>
-          <Line />
-        </SectionsSeparator>
-      )}
-    />
+    <PaginatedScreen
+      variables={{
+        options: appliedFields.episode,
+      }}
+      indexKey={'i'}
+      query={useGetEpisodesQuery}
+      getNext={(data) => data.episodes.info.next}>
+      {(endReached, data) => {
+        const sections = getEpisodesSections(data?.episodes?.results)
+
+        return (
+          <SectionList
+            renderItem={renderEpisodeItem}
+            sections={sections}
+            onEndReached={endReached}
+            onEndReachedThreshold={0.1}
+            renderSectionHeader={renderEpisodeHeader}
+            ItemSeparatorComponent={() => <Line ml={16} />}
+            renderSectionFooter={() => (
+              <SectionsSeparator>
+                <Line />
+              </SectionsSeparator>
+            )}
+          />
+        )
+      }}
+    </PaginatedScreen>
   )
 }

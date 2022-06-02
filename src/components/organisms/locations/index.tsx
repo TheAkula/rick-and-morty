@@ -1,35 +1,19 @@
 import React from 'react'
-import { ListRenderItem, View } from 'react-native'
-import { Text } from 'react-native-svg'
+import { FlatList, ListRenderItem } from 'react-native'
 
 import { LocationItem } from 'src/components/molecules/locationItem'
+import { PaginatedScreen } from 'src/components/templates/paginatedScreen'
 import { Location, useGetLocationsQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
-import { Spinner } from 'src/ui/spinner'
 
 import { StyledFlatList } from './styled'
+
+type LocationItem = Pick<Location, 'type' | 'name' | 'id' | '__typename'> | null
 
 export const Locations = () => {
   const { appliedFields } = useFilterContext()
 
-  const { loading, error, data } = useGetLocationsQuery({
-    variables: {
-      options: appliedFields.location,
-    },
-  })
-
-  if (loading) {
-    return <Spinner />
-  }
-
-  if (error) {
-    return <Text>{error.message}</Text>
-  }
-
-  const renderLocations: ListRenderItem<Pick<
-    Location,
-    'type' | 'name' | 'id' | '__typename'
-  > | null> = ({ item }) => {
+  const renderLocations: ListRenderItem<LocationItem> = ({ item }) => {
     return (
       <LocationItem
         name={item?.name || ''}
@@ -39,13 +23,23 @@ export const Locations = () => {
     )
   }
 
-  return data ? (
-    <StyledFlatList<React.ElementType>
-      data={data.locations?.results}
-      renderItem={renderLocations}
-      numColumns={2}
-    />
-  ) : (
-    <View />
+  return (
+    <PaginatedScreen
+      variables={{
+        options: appliedFields.location,
+      }}
+      query={useGetLocationsQuery}
+      indexKey={'i'}
+      getNext={(data) => data.locations.info.next}>
+      {(endReached, data) => (
+        <StyledFlatList
+          data={data.locations?.results}
+          renderItem={renderLocations}
+          numColumns={2}
+          onEndReached={endReached}
+          onEndReachedThreshold={0.1}
+        />
+      )}
+    </PaginatedScreen>
   )
 }

@@ -26,6 +26,32 @@ const client = new ApolloClient({
               }
             },
           },
+          locations: {
+            keyArgs: ['filter'],
+
+            merge(existing = { results: [], info: {} }, incoming) {
+              return {
+                ...existing,
+                results: [...existing.results, ...incoming.results],
+                info: {
+                  ...incoming.info,
+                },
+              }
+            },
+          },
+          episodes: {
+            keyArgs: ['filter'],
+
+            merge(existing = { results: [], info: {} }, incoming) {
+              return {
+                ...existing,
+                results: [...existing.results, ...incoming.results],
+                info: {
+                  ...incoming.info,
+                },
+              }
+            },
+          },
         },
       },
     },

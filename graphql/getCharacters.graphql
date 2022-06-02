@@ -36,12 +36,15 @@ query getCharacter($id: ID!) {
   }
 }
 
-query getLocations($options: FilterLocation) {
-  locations(filter: $options) {
+query getLocations($options: FilterLocation, $i: Int) {
+  locations(filter: $options, page: $i) {
     results {
       name
       type
       id
+    }
+    info {
+      next
     }
   }
 }
@@ -60,13 +63,16 @@ query getLocation($id: ID!) {
   }
 }
 
-query getEpisodes($options: FilterEpisode) {
-  episodes(filter: $options) {
+query getEpisodes($options: FilterEpisode, $i: Int) {
+  episodes(filter: $options, page: $i) {
     results {
       id
       name
       air_date
       episode
+    }
+    info {
+      next
     }
   }
 }
