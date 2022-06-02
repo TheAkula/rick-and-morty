@@ -3,7 +3,7 @@ import CharacterBg from 'assets/images/character-bg.png'
 
 import { StyledText } from 'src/components/atoms/text'
 import { GetCharacterQuery } from 'src/generated/graphql'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 import {
   ImageContainer,
@@ -26,13 +26,16 @@ export const CharacterDetailCard: React.FC<GetCharacterQuery['character']> = ({
             <StyledImage source={{ uri: image }} width={130} height={130} />
           )}
         </ImageContainer>
-        <StyledText size={11} color={colors.basic.lightGray}>
+        <StyledText size={11} color={baseTheme.colors.basic.lightGray}>
           {status}
         </StyledText>
         <StyledText size={28} weight="bold">
           {name}
         </StyledText>
-        <StyledText size={13} color={colors.graybase.gray1} weight="black">
+        <StyledText
+          size={13}
+          color={baseTheme.colors.graybase.gray1}
+          weight="black">
           {species}
         </StyledText>
       </StyledCharacterDetailCard>

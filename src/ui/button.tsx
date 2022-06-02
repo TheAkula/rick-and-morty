@@ -4,17 +4,17 @@ import styled from 'styled-components/native'
 import { ifProp } from 'styled-tools'
 
 import { StyledText } from 'src/components/atoms/text'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 const ButtonBlock = styled.TouchableOpacity<{ isDisabled?: boolean }>`
   opacity: ${ifProp('isDisabled', '0.55', '1')};
   padding: 5px 12px;
   border-radius: 24px;
-  background-color: ${colors.primary};
+  background-color: ${baseTheme.colors.primary};
 `
 const Title = styled(StyledText)`
   text-align: center;
-  color: ${colors.basic.white};
+  color: ${baseTheme.colors.basic.white};
 `
 
 interface Props extends TouchableOpacityProps {

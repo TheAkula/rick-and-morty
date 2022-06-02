@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
+import { useFilterContext } from 'src/modules/filter-context'
 import { FilterParamList, FilterRoutes } from 'src/types/filterNavigation'
 import { Input } from 'src/ui/input'
 import { VoiceModal } from 'src/ui/voiceModal'
 
 import { StyledFilterSelect } from './styled'
-import { useFilterContext } from 'src/modules/filter-context'
 
 type Props = NativeStackScreenProps<FilterParamList, FilterRoutes.Select>
 

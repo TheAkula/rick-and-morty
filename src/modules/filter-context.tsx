@@ -61,9 +61,9 @@ interface ReducerState {
 const initialState: InitialState = {
   type: null,
   fields: {
-    character: {},
-    location: {},
-    episode: {},
+    [ScreenTypes.character]: {},
+    [ScreenTypes.location]: {},
+    [ScreenTypes.episode]: {},
   },
   appliedFields: {
     character: {},

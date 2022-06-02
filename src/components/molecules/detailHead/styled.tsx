@@ -1,9 +1,9 @@
 import styled from 'styled-components/native'
 
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 export const StyledDetailHead = styled.View`
-  background-color: ${colors.graybase.gray6};
+  background-color: ${baseTheme.colors.graybase.gray6};
   padding: 20px 22px;
   align-items: center;
 `

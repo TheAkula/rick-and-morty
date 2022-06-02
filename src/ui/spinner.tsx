@@ -2,7 +2,7 @@ import React from 'react'
 import { ActivityIndicator } from 'react-native'
 import styled from 'styled-components/native'
 
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 const SpinnerContainer = styled.View`
   align-items: center;
@@ -12,7 +12,7 @@ const SpinnerContainer = styled.View`
 export const Spinner = () => {
   return (
     <SpinnerContainer>
-      <ActivityIndicator color={colors.primary} size="large" />
+      <ActivityIndicator color={baseTheme.colors.primary} size="large" />
     </SpinnerContainer>
   )
 }

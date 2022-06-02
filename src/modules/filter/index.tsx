@@ -7,7 +7,7 @@ import { StyledText } from 'src/components/atoms/text'
 import { FilterFields } from 'src/components/organisms/filterFields'
 import { FilterSelect } from 'src/components/organisms/filterSelect'
 import { useFilterContext } from 'src/modules/filter-context'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
 import { Button } from 'src/ui/button'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
@@ -41,7 +41,7 @@ export const Filter = () => {
         headerBackVisible: false,
         contentStyle: {
           paddingTop: 20,
-          backgroundColor: colors.basic.white,
+          backgroundColor: baseTheme.colors.basic.white,
         },
       }}>
       <Stack.Screen
@@ -54,7 +54,7 @@ export const Filter = () => {
             type && !isEmptyObject(fields[type]) ? (
               <StyledText
                 size={17}
-                color={colors.primary}
+                color={baseTheme.colors.primary}
                 onPress={onClearHandler}>
                 Clear
               </StyledText>

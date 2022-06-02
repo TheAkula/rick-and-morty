@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { StyledText } from 'src/components/atoms/text'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 import { StyledDetailHead } from './styled'
 
@@ -18,13 +18,16 @@ export const DetailHead: React.FC<LocationHeadProps> = ({
 }) => {
   return (
     <StyledDetailHead>
-      <StyledText size={11} color={colors.basic.lightGray}>
+      <StyledText size={11} color={baseTheme.colors.basic.lightGray}>
         {type}
       </StyledText>
       <StyledText size={28} weight="bold" align="center">
         {name}
       </StyledText>
-      <StyledText size={13} color={colors.graybase.gray1} weight="black">
+      <StyledText
+        size={13}
+        color={baseTheme.colors.graybase.gray1}
+        weight="black">
         {desc}
       </StyledText>
     </StyledDetailHead>

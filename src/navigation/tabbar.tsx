@@ -10,7 +10,7 @@ import { Header } from 'src/components/molecules/header'
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 import CharacterIcon from '../../assets/images/icons/character.svg'
 import CharacterActiveIcon from '../../assets/images/icons/character-active.svg'
@@ -41,21 +41,21 @@ export const TabBar = () => {
     <Tab.Navigator
       initialRouteName={TabRoutes.Character}
       sceneContainerStyle={{
-        backgroundColor: colors.basic.white,
+        backgroundColor: baseTheme.colors.basic.white,
       }}
       screenOptions={{
         header: (props) => <Header {...props} />,
         tabBarStyle: {
           shadowColor: 'transparent',
-          backgroundColor: colors.basic.headerBg,
-          borderColor: colors.basic.gray,
+          backgroundColor: baseTheme.colors.basic.headerBg,
+          borderColor: baseTheme.colors.basic.gray,
         },
         tabBarLabelStyle: {
           fontSize: 10,
           fontWeight: '500',
         },
-        tabBarInactiveTintColor: colors.graybase.gray1,
-        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: baseTheme.colors.graybase.gray1,
+        tabBarActiveTintColor: baseTheme.colors.primary,
       }}>
       <Tab.Screen
         name={TabRoutes.Character}

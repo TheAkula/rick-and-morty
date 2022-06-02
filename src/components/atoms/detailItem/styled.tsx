@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { ifProp } from 'styled-tools'
 
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 import { StyledText } from '../text'
 
@@ -16,7 +16,7 @@ export const StyledDetailItem = styled.View<{ isEpisode: boolean }>`
 
 export const EpisodeDate = styled(StyledText).attrs({
   size: 11,
-  color: colors.graybase.gray1,
+  color: baseTheme.colors.graybase.gray1,
   weight: 'black',
 })`
   margin-top: 5px;

@@ -5,13 +5,13 @@ import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
 import { Character } from 'src/components/templates/character'
 import { EpisodeDetail } from 'src/components/templates/episode'
-import { Filter } from 'src/components/templates/filter'
 import { Location } from 'src/components/templates/location'
 import { useAlertContext } from 'src/modules/alert-context'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 import { Alert } from 'src/ui/alert'
 import { getDetailTitle } from 'src/utils/getDetailTitle'
 
+import { Filter } from '../modules/filter'
 import { RootStack, Routes } from './routes'
 import { TabBar } from './tabbar'
 
@@ -27,7 +27,7 @@ export const RootNavigation = () => {
           headerShown: false,
           headerShadowVisible: false,
           contentStyle: {
-            backgroundColor: colors.basic.white,
+            backgroundColor: baseTheme.colors.basic.white,
           },
         }}
         initialRouteName={Routes.MainNavigator}>

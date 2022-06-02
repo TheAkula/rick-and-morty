@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 export const StyledLocationItem = styled.View.attrs({
   borderRadius: 8,
@@ -9,7 +9,7 @@ export const StyledLocationItem = styled.View.attrs({
   min-height: 80px;
   padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid ${colors.basic.line};
+  border: 1px solid ${baseTheme.colors.basic.line};
   margin-right: 8.5px;
   margin-left: 8.5px;
 `

@@ -1,57 +1,28 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import {
   TextInput,
   TextInputProps,
   TouchableWithoutFeedback,
 } from 'react-native'
-import Voice, {
-  SpeechEndEvent,
-  SpeechResultsEvent,
-  SpeechStartEvent,
-} from '@react-native-voice/voice'
+import Voice, { SpeechResultsEvent } from '@react-native-voice/voice'
 import DictationIcon from 'assets/images/icons/dictation.svg'
 import DictationActiveIcon from 'assets/images/icons/dictation-active.svg'
 import SearchIcon from 'assets/images/icons/search.svg'
-import styled from 'styled-components/native'
 
 import {
   Fields,
-  FilterContext,
   FilterFieldType,
   getValue,
   ScreenTypes,
 } from 'src/modules/filter-context'
-import { colors } from 'src/theme/colors'
 
-const StyledTextInput = styled.TextInput`
-  font-size: 17px;
-  padding: 0;
-  flex: 1;
-`
-
-const StyledInputWrapper = styled.View`
-  border-radius: 10px;
-  background-color: ${colors.basic.inputBg};
-  height: 36px;
-  flex-direction: row;
-  align-items: center;
-`
-
-const InputContainer = styled.View`
-  padding: 6px 16px 10px 16px;
-  border-color: ${colors.basic.line};
-  border-bottom-width: 1px;
-  border-style: solid;
-`
-
-const SearchIconContainer = styled.View`
-  padding-left: 10px;
-  padding-right: 7px;
-`
-
-const DictationButton = styled.View`
-  margin-right: 8px;
-`
+import {
+  DictationButton,
+  InputContainer,
+  SearchIconContainer,
+  StyledInputWrapper,
+  StyledTextInput,
+} from './styled'
 
 type InputProps = {
   setIsRecording: (s: boolean) => void
@@ -71,11 +42,6 @@ export class Input extends React.Component<InputProps> {
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this)
   }
 
-  state = {
-    results: [],
-    partialResults: [],
-  }
-
   componentWillUnmount() {
     Voice.destroy().then(() => Voice.removeAllListeners())
   }
@@ -83,7 +49,7 @@ export class Input extends React.Component<InputProps> {
   inputRef = React.createRef<TextInput>()
 
   onSpeechStart() {
-    this.setState({ results: '' })
+    this.props.updateField(this.props.title, '')
     this.props.setIsRecording(true)
   }
 
@@ -109,7 +75,7 @@ export class Input extends React.Component<InputProps> {
 
   _toggleRecognizing() {
     this.setState({ partialResults: [], results: [] })
-    Voice.isRecognizing().then(isR => {
+    Voice.isRecognizing().then((isR) => {
       if (isR) {
         Voice.stop().then(() => {
           this.props.setIsRecording(false)
@@ -137,7 +103,7 @@ export class Input extends React.Component<InputProps> {
                 ? getValue(this.props.fields, this.props.type, this.props.title)
                 : ''
             }
-            onChangeText={text =>
+            onChangeText={(text) =>
               this.props.updateField(this.props.title, text)
             }
             ref={this.inputRef}

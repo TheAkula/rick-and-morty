@@ -9,7 +9,27 @@ import { FilterContextProvider } from './modules/filter-context'
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          characters: {
+            keyArgs: ['filter'],
+
+            merge(existing = { results: [], info: {} }, incoming) {
+              return {
+                ...existing,
+                results: [...existing.results, ...incoming.results],
+                info: {
+                  ...incoming.info,
+                },
+              }
+            },
+          },
+        },
+      },
+    },
+  }),
 })
 
 export const App = () => {

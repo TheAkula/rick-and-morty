@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 
 import { Routes, useNavigation } from 'src/navigation/routes'
-import { colors } from 'src/theme/colors'
+import { baseTheme } from 'src/theme/base'
 
 import ArrowRightImage from '../../../../assets/images/icons/arrow-right.svg'
 import { StyledText } from '../text'
@@ -47,7 +47,7 @@ export const DetailItem: React.FC<EpisodeItemProps> = ({
           <StyledText size={17} weight="black">
             {title[0].toUpperCase() + title.slice(1)}
           </StyledText>
-          <StyledText size={15} color={colors.basic.lightGray}>
+          <StyledText size={15} color={baseTheme.colors.basic.lightGray}>
             {description || 'Unknown'}
           </StyledText>
           {date && <EpisodeDate>{date}</EpisodeDate>}

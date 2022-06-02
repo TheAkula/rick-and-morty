@@ -216,6 +216,7 @@ export type GetCharactersQuery = {
       status?: string | null
       image?: string | null
     } | null> | null
+    info?: { __typename?: 'Info'; next?: number | null } | null
   } | null
 }
 
@@ -334,6 +335,9 @@ export const GetCharactersDocument = gql`
         name
         status
         image
+      }
+      info {
+        next
       }
     }
   }

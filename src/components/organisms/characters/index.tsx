@@ -8,12 +8,14 @@ import { StyledCharactersList } from './styled'
 
 interface CharactersProps {
   characters: NonNullable<GetCharactersQuery['characters']>['results']
+  endReached?: () => void
   topElement?: React.ComponentType<any> | React.ReactElement<any, any>
 }
 
 export const Characters: React.FC<CharactersProps> = ({
   characters,
   topElement,
+  endReached,
 }) => {
   const renderItem: ListRenderItem<Pick<
     Character,
@@ -46,7 +48,10 @@ export const Characters: React.FC<CharactersProps> = ({
       >
         data={characters}
         ListHeaderComponent={topElement}
+        onEndReached={endReached}
+        onEndReachedThreshold={0.1}
         renderItem={renderItem}
+        removeClippedSubviews
         numColumns={2}
         keyExtractor={(item) => (item as { id: string }).id}
       />
