@@ -30,7 +30,6 @@ export const Filter = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        statusBarHidden: true,
         headerTitle: (props) => (
           <StyledText size={15} weight="black">
             {props.children}
@@ -72,6 +71,7 @@ export const Filter = () => {
             : ''
 
           return {
+            statusBarHidden: true,
             headerLeft: () => (
               <BackButton pressed={() => props.navigation.goBack()} />
             ),

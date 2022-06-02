@@ -29,5 +29,11 @@ export const baseTheme = {
       height: 36,
       width: 36,
     },
+    characterCard: {
+      width: 163,
+    },
+    locationItem: {
+      width: 163,
+    },
   },
 }

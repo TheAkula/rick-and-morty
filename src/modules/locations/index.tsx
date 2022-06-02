@@ -1,11 +1,12 @@
 import React from 'react'
-import { ListRenderItem } from 'react-native'
+import { ListRenderItem, useWindowDimensions } from 'react-native'
 
 import { LocationItem } from 'src/components/molecules/locationItem'
 import { PaginatedScreen } from 'src/components/templates/paginatedScreen'
 import { Location, useGetLocationsQuery } from 'src/generated/graphql'
 import { useFilterContext } from 'src/modules/filter-context'
 
+import { baseTheme } from '../../theme/base'
 import { StyledFlatList } from './styled'
 
 type LocationItemType = Pick<
@@ -15,6 +16,11 @@ type LocationItemType = Pick<
 
 export const LocationsScreen = () => {
   const { appliedFields } = useFilterContext()
+  const dimensions = useWindowDimensions()
+
+  const numColumns = Math.floor(
+    dimensions.width / (baseTheme.sizes.characterCard.width + 20),
+  )
 
   const renderLocations: ListRenderItem<LocationItemType> = ({ item }) => {
     return (
@@ -38,7 +44,8 @@ export const LocationsScreen = () => {
         <StyledFlatList
           data={data.locations?.results}
           renderItem={renderLocations}
-          numColumns={2}
+          numColumns={numColumns}
+          key={numColumns}
           onEndReached={endReached}
           onEndReachedThreshold={0.1}
         />

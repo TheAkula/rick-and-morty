@@ -1,8 +1,14 @@
 import React, { ComponentType } from 'react'
-import { FlatListProps, ListRenderItem, View } from 'react-native'
+import {
+  FlatListProps,
+  ListRenderItem,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
 import { Character, GetCharactersQuery } from 'src/generated/graphql'
+import { baseTheme } from 'src/theme/base'
 
 import { StyledCharactersList } from './styled'
 
@@ -17,6 +23,12 @@ export const Characters: React.FC<CharactersProps> = ({
   topElement,
   endReached,
 }) => {
+  const dimensions = useWindowDimensions()
+
+  const numColumns = Math.floor(
+    dimensions.width / (baseTheme.sizes.characterCard.width + 20),
+  )
+
   const renderItem: ListRenderItem<Pick<
     Character,
     '__typename' | 'id' | 'name' | 'status' | 'image'
@@ -31,7 +43,6 @@ export const Characters: React.FC<CharactersProps> = ({
         name={item.name || ''}
         status={item.status || ''}
         id={item.id || ''}
-        key={item.id}
       />
     )
   }
@@ -47,12 +58,13 @@ export const Characters: React.FC<CharactersProps> = ({
         >
       >
         data={characters}
+        key={numColumns}
         ListHeaderComponent={topElement}
         onEndReached={endReached}
         onEndReachedThreshold={0.1}
         renderItem={renderItem}
         removeClippedSubviews
-        numColumns={2}
+        numColumns={numColumns}
         keyExtractor={(item) => (item as { id: string }).id}
       />
     </View>
