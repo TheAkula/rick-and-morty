@@ -1,0 +1,12 @@
+query getLocations($options: FilterLocation, $i: Int) {
+  locations(filter: $options, page: $i) {
+    results {
+      name
+      type
+      id
+    }
+    info {
+      next
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query getEpisodes($options: FilterEpisode, $i: Int) {
+  episodes(filter: $options, page: $i) {
+    results {
+      id
+      name
+      air_date
+      episode
+    }
+    info {
+      next
+    }
+  }
+}
