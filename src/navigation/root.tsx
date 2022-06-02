@@ -51,6 +51,7 @@ export const RootNavigation = () => {
           <Stack.Screen
             name={Routes.CharacterDetailScreen}
             component={Character}
+            //!!! TYPE_ERROR FIXME: !!!
           />
           <Stack.Screen
             name={Routes.LocationDetailScreen}

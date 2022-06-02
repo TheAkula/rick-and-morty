@@ -1,3 +1,5 @@
+//!!! FIXME: Разделить на несколько файлов !!!
+
 query getCharacters($options: FilterCharacter, $i: Int) {
   characters(filter: $options, page: $i) {
     results {
