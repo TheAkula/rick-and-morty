@@ -18,9 +18,7 @@ export const BackButton: React.FC<BackButtonProps> = ({ pressed }) => {
         <ImageWrapper>
           <ArrowLeftImage width={12} height={20.5} />
         </ImageWrapper>
-        <StyledText size={17} color={baseTheme.colors.primary}>
-          Back
-        </StyledText>
+        <StyledText color={baseTheme.colors.primary}>Back</StyledText>
       </StyledBackButton>
     </TouchableOpacity>
   )

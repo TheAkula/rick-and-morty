@@ -30,12 +30,11 @@ export const RootNavigation = () => {
         <Stack.Screen name={Routes.MainNavigator} component={TabBar} />
         <Stack.Screen name={Routes.FilterScreen} component={Filter} />
         <Stack.Group
-          screenOptions={({ navigation, route }) => ({
+          screenOptions={({ navigation }) => ({
             headerShown: true,
             headerLeft: () => (
               <BackButton pressed={() => navigation.goBack()} />
             ),
-            title: route.params ? getDetailTitle(route.params.name) : '',
             headerBackVisible: false,
             headerTitleAlign: 'center',
             headerTitle: (props) => (
@@ -47,14 +46,23 @@ export const RootNavigation = () => {
           <Stack.Screen
             name={Routes.CharacterDetailScreen}
             component={Character}
+            options={({ route }) => ({
+              title: route.params ? getDetailTitle(route.params.name) : '',
+            })}
           />
           <Stack.Screen
             name={Routes.LocationDetailScreen}
             component={Location}
+            options={({ route }) => ({
+              title: route.params ? getDetailTitle(route.params.name) : '',
+            })}
           />
           <Stack.Screen
             name={Routes.EpisodeDetailScreen}
             component={EpisodeDetail}
+            options={({ route }) => ({
+              title: route.params ? getDetailTitle(route.params.name) : '',
+            })}
           />
         </Stack.Group>
       </Stack.Navigator>

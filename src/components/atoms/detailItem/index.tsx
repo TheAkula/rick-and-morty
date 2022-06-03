@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo } from 'react'
 import { TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import ArrowRightImage from 'assets/images/icons/arrow-right.svg'
 
-import { Routes, useNavigation } from 'src/navigation/routes'
+import { RootStackScreenProps, Routes } from 'src/navigation/routes'
 import { baseTheme } from 'src/theme/base'
 
-import ArrowRightImage from '../../../../assets/images/icons/arrow-right.svg'
 import { StyledText } from '../text'
 import { EpisodeDate, StyledDetailItem } from './styled'
 
@@ -23,7 +24,10 @@ export const DetailItem: React.FC<EpisodeItemProps> = ({
   navigate,
   isEpisode = false,
 }) => {
-  const navigation = useNavigation()
+  const navigation =
+    useNavigation<
+      RootStackScreenProps<Routes.LocationDetailScreen>['navigation']
+    >()
 
   const onPressed = useCallback(() => {
     navigation.push(
@@ -44,7 +48,7 @@ export const DetailItem: React.FC<EpisodeItemProps> = ({
     <Wrapper onPress={navigate ? onPressed : undefined}>
       <StyledDetailItem isEpisode={isEpisode}>
         <View>
-          <StyledText size={17} weight="black">
+          <StyledText weight="black">
             {title[0].toUpperCase() + title.slice(1)}
           </StyledText>
           <StyledText size={15} color={baseTheme.colors.basic.lightGray}>

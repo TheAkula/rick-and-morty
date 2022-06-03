@@ -7,16 +7,21 @@ import { StyledText } from 'src/components/atoms/text'
 import { FilterFields } from 'src/components/organisms/filterFields'
 import { FilterSelect } from 'src/components/organisms/filterSelect'
 import { useFilterContext } from 'src/modules/filter-context'
+import {
+  FilterRoutes,
+  RootStackScreenProps,
+  Routes,
+} from 'src/navigation/routes'
 import { baseTheme } from 'src/theme/base'
-import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
 import { Button } from 'src/ui/button'
 import { isEmptyObject } from 'src/utils/isEmptyObject'
 
 const Stack = createNativeStackNavigator()
 
-export const Filter = () => {
+export const Filter = ({
+  navigation,
+}: RootStackScreenProps<Routes.FilterScreen>) => {
   const { apply, fields, clearFields, type } = useFilterContext()
-  const navigation = useNavigation()
 
   const onApply = () => {
     apply()
@@ -52,7 +57,6 @@ export const Filter = () => {
           headerLeft: () =>
             type && !isEmptyObject(fields[type]) ? (
               <StyledText
-                size={17}
                 color={baseTheme.colors.primary}
                 onPress={onClearHandler}>
                 Clear

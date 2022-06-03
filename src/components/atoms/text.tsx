@@ -4,14 +4,14 @@ import styled from 'styled-components/native'
 import { baseTheme } from '../../theme/base'
 
 interface StyledTextProps {
-  size: number
+  size?: number
   color?: string
   weight?: 'regular' | 'bold' | 'black' | 'medium'
   align?: 'center' | 'left' | 'right'
 }
 
 export const StyledText = styled(Text)<StyledTextProps>`
-  font-size: ${({ size }) => size + 'px'};
+  font-size: ${({ size }) => (size ? size + 'px' : '17px')};
   color: ${({ color }) => (color ? color : baseTheme.colors.basic.black)};
   font-family: ${({ weight }) =>
     weight

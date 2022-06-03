@@ -5,12 +5,15 @@ import { Characters } from 'src/components/organisms/characters'
 import { PaginatedScreen } from 'src/components/templates/paginatedScreen'
 import { useGetCharactersQuery } from 'src/generated/graphql'
 import { ScreenTypes, useFilterContext } from 'src/modules/filter-context'
+import { HomeTabScreenProps, TabRoutes } from 'src/navigation/routes'
 
 const CharactersContainer = styled.View`
   padding-top: 20px;
 `
 
-export const CharactersScreen = () => {
+export const CharactersScreen = ({
+  navigation,
+}: HomeTabScreenProps<TabRoutes.Character>) => {
   const { appliedFields } = useFilterContext()
 
   return (

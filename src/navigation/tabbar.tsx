@@ -1,10 +1,12 @@
 import React from 'react'
 import { View } from 'react-native'
-import {
-  BottomTabNavigationProp,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs'
-import { useNavigation as useNativeNavigation } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import CharacterIcon from 'assets/images/icons/character.svg'
+import CharacterActiveIcon from 'assets/images/icons/character-active.svg'
+import EpisodeIcon from 'assets/images/icons/episode.svg'
+import EpisodeActiveIcon from 'assets/images/icons/episode-active.svg'
+import LocationIcon from 'assets/images/icons/location.svg'
+import LocationActiveIcon from 'assets/images/icons/location-active.svg'
 
 import { Header } from 'src/components/molecules/header'
 import { CharactersScreen } from 'src/modules/characters'
@@ -12,27 +14,7 @@ import { EpisodesScreen } from 'src/modules/episodes'
 import { LocationsScreen } from 'src/modules/locations'
 import { baseTheme } from 'src/theme/base'
 
-import CharacterIcon from '../../assets/images/icons/character.svg'
-import CharacterActiveIcon from '../../assets/images/icons/character-active.svg'
-import EpisodeIcon from '../../assets/images/icons/episode.svg'
-import EpisodeActiveIcon from '../../assets/images/icons/episode-active.svg'
-import LocationIcon from '../../assets/images/icons/location.svg'
-import LocationActiveIcon from '../../assets/images/icons/location-active.svg'
-
-enum TabRoutes {
-  Episode = 'EpisodeScreen',
-  Character = 'CharacterScreen',
-  Location = 'LocationScreen',
-}
-
-type TabParamList = {
-  [TabRoutes.Character]: undefined
-  [TabRoutes.Episode]: undefined
-  [TabRoutes.Location]: undefined
-}
-
-export const useNavigation = () =>
-  useNativeNavigation<BottomTabNavigationProp<TabParamList, TabRoutes>>()
+import { TabRoutes } from './routes'
 
 const Tab = createBottomTabNavigator()
 
@@ -62,14 +44,14 @@ export const TabBar = () => {
         component={CharactersScreen}
         options={{
           title: 'Character',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({ focused, color }) =>
             focused ? (
               <View>
-                <CharacterActiveIcon width={28} height={28} />
+                <CharacterActiveIcon color={color} width={28} height={28} />
               </View>
             ) : (
               <View>
-                <CharacterIcon width={28} height={28} />
+                <CharacterIcon color={color} width={28} height={28} />
               </View>
             ),
         }}
@@ -79,14 +61,14 @@ export const TabBar = () => {
         component={LocationsScreen}
         options={{
           title: 'Location',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({ focused, color }) =>
             focused ? (
               <View>
-                <LocationActiveIcon width={28} height={28} />
+                <LocationActiveIcon color={color} width={28} height={28} />
               </View>
             ) : (
               <View>
-                <LocationIcon width={28} height={28} />
+                <LocationIcon color={color} width={28} height={28} />
               </View>
             ),
         }}
@@ -97,14 +79,14 @@ export const TabBar = () => {
         component={EpisodesScreen}
         options={{
           title: 'Episode',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({ focused, color }) =>
             focused ? (
               <View>
-                <EpisodeActiveIcon width={28} height={28} />
+                <EpisodeActiveIcon color={color} width={28} height={28} />
               </View>
             ) : (
               <View>
-                <EpisodeIcon width={28} height={28} />
+                <EpisodeIcon color={color} width={28} height={28} />
               </View>
             ),
         }}

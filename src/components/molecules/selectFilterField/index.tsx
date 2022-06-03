@@ -1,5 +1,7 @@
 import React from 'react'
 import { TouchableWithoutFeedback } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import ArrowImage from 'assets/images/icons/arrow-right.svg'
 
 import { Checkbox } from 'src/components/atoms/checkbox'
 import { DetailItem } from 'src/components/atoms/detailItem'
@@ -8,9 +10,8 @@ import {
   getValue,
   useFilterContext,
 } from 'src/modules/filter-context'
-import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
+import { FilterRoutes, FilterScreenProps } from 'src/navigation/routes'
 
-import ArrowImage from '../../../../assets/images/icons/arrow-right.svg'
 import {
   ArrowContainer,
   StyledFieldInfoItem,
@@ -27,7 +28,8 @@ export const SelectFilterField: React.FC<SelectFilterFieldProps> = ({
   description,
 }) => {
   const { fields, type } = useFilterContext()
-  const navigation = useNavigation()
+  const navigation =
+    useNavigation<FilterScreenProps<FilterRoutes.Home>['navigation']>()
 
   const onPressed = () => {
     navigation.push(FilterRoutes.Select, {

@@ -1,10 +1,11 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { CharacterCardImg } from 'src/components/atoms/characterCardImg'
 import { StyledText } from 'src/components/atoms/text'
 import { Scalars } from 'src/generated/graphql'
-import { Routes, useNavigation } from 'src/navigation/routes'
+import { HomeTabScreenProps, Routes, TabRoutes } from 'src/navigation/routes'
 import { baseTheme } from 'src/theme/base'
 
 import {
@@ -27,7 +28,8 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
   name,
   id,
 }) => {
-  const navigation = useNavigation()
+  const navigation =
+    useNavigation<HomeTabScreenProps<TabRoutes.Character>['navigation']>()
 
   const onPressed = () => {
     navigation.push(Routes.CharacterDetailScreen, {
@@ -46,9 +48,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
               <StyledText size={11} color={baseTheme.colors.basic.lightGray}>
                 {status}
               </StyledText>
-              <StyledText size={17} weight={'black'}>
-                {name}
-              </StyledText>
+              <StyledText weight={'black'}>{name}</StyledText>
             </StyledCharacterCardInfo>
           </StyledCharacterInfoWrapper>
         </StyledCharacterCard>

@@ -40,9 +40,7 @@ export const CheckboxFilterField: React.FC<CheckboxFilterFieldProps> = ({
           <Checkbox active={!!type && getValue(fields, type, title) === name} />
         </RowCenter>
         <CheckboxTitle isLast={isLast}>
-          <StyledText size={17}>
-            {name[0].toUpperCase() + name.slice(1)}
-          </StyledText>
+          <StyledText>{name[0].toUpperCase() + name.slice(1)}</StyledText>
         </CheckboxTitle>
       </StyledCheckboxContainer>
     </TouchableWithoutFeedback>
