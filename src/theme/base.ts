@@ -35,5 +35,8 @@ export const baseTheme = {
     locationItem: {
       width: 163,
     },
+    characters: {
+      gap: 17,
+    },
   },
 }

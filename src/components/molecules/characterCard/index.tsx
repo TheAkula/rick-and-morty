@@ -11,6 +11,7 @@ import {
   CharacterCardContainer,
   StyledCharacterCard,
   StyledCharacterCardInfo,
+  StyledCharacterInfoWrapper,
 } from './styled'
 
 interface CharacterCardProps {
@@ -40,14 +41,16 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
       <CharacterCardContainer collapsable={false}>
         <StyledCharacterCard>
           <CharacterCardImg source={{ uri: image }} />
-          <StyledCharacterCardInfo>
-            <StyledText size={11} color={baseTheme.colors.basic.lightGray}>
-              {status}
-            </StyledText>
-            <StyledText size={17} weight={'black'}>
-              {name}
-            </StyledText>
-          </StyledCharacterCardInfo>
+          <StyledCharacterInfoWrapper>
+            <StyledCharacterCardInfo>
+              <StyledText size={11} color={baseTheme.colors.basic.lightGray}>
+                {status}
+              </StyledText>
+              <StyledText size={17} weight={'black'}>
+                {name}
+              </StyledText>
+            </StyledCharacterCardInfo>
+          </StyledCharacterInfoWrapper>
         </StyledCharacterCard>
       </CharacterCardContainer>
     </TouchableOpacity>

@@ -1,10 +1,5 @@
-import React, { ComponentType } from 'react'
-import {
-  FlatListProps,
-  ListRenderItem,
-  useWindowDimensions,
-  View,
-} from 'react-native'
+import React from 'react'
+import { ListRenderItem, useWindowDimensions, View } from 'react-native'
 
 import { CharacterCard } from 'src/components/molecules/characterCard'
 import { Character, GetCharactersQuery } from 'src/generated/graphql'
