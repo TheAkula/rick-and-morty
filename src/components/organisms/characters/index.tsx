@@ -49,14 +49,7 @@ export const Characters: React.FC<CharactersProps> = ({
 
   return characters ? (
     <View>
-      <StyledCharactersList<
-        ComponentType<
-          { data: CharactersProps['characters'] } & FlatListProps<Pick<
-            Character,
-            '__typename' | 'id' | 'name' | 'status' | 'image'
-          > | null>
-        >
-      >
+      <StyledCharactersList
         data={characters}
         key={numColumns}
         ListHeaderComponent={topElement}

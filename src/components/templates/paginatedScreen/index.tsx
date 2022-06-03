@@ -41,16 +41,10 @@ export const PaginatedScreen: React.FC<PaginatedScreenProps> = ({
     return <Text>{error.message}</Text>
   }
 
-  let element = <Spinner />
-
-  if (networkStatus !== NetworkStatus.loading) {
-    element = (
-      <View>
-        {children(endReached, data)}
-        {networkStatus === NetworkStatus.fetchMore && <RefreshIndicator />}
-      </View>
-    )
-  }
-
-  return element
+  return (
+    <View>
+      {!data && loading ? <Spinner /> : children(endReached, data)}
+      {networkStatus === NetworkStatus.fetchMore && <RefreshIndicator />}
+    </View>
+  )
 }

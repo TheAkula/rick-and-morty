@@ -81,17 +81,19 @@ export const FilterContext = React.createContext(initialState)
 const reducer: Reducer<ReducerState, FilterAction> = (state, action) => {
   switch (action.type) {
     case 'CLEAR':
+      if (!state.type) {
+        return state
+      }
+
       return {
         ...state,
         changes: {
-          [ScreenTypes.character]: {},
-          [ScreenTypes.location]: {},
-          [ScreenTypes.episode]: {},
+          ...state.changes,
+          [state.type]: {},
         },
         applied: {
-          [ScreenTypes.character]: {},
-          [ScreenTypes.location]: {},
-          [ScreenTypes.episode]: {},
+          ...state.applied,
+          [state.type]: {},
         },
       }
 
