@@ -1,6 +1,5 @@
-import { View } from 'react-native'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
-export const RowCenter = styled(View)`
+export const RowCenter = styled.View`
   justify-content: center;
 `

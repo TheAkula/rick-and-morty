@@ -46,7 +46,7 @@ export const Filter = () => {
       <Stack.Screen
         name={FilterRoutes.Home}
         component={FilterFields}
-        options={({}) => ({
+        options={{
           title: 'Filter',
           headerRight: () => <Button title="APPLY" onPress={onApply} />,
           headerLeft: () =>
@@ -60,7 +60,7 @@ export const Filter = () => {
             ) : (
               <View />
             ),
-        })}
+        }}
       />
       <Stack.Screen
         name={FilterRoutes.Select}

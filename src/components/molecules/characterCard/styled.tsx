@@ -1,16 +1,15 @@
-import { View } from 'react-native'
 import styled from 'styled-components/native'
 
 import { baseTheme } from 'src/theme/base'
 
-export const StyledCharacterCard = styled(View)`
+export const StyledCharacterCard = styled.View`
   width: 163px;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
 `
 
-export const StyledCharacterCardInfo = styled(View)`
+export const StyledCharacterCardInfo = styled.View`
   line-height: 22px;
   padding: 12px;
   border: 1px solid ${baseTheme.colors.graybase.gray5};

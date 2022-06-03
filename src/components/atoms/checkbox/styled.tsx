@@ -1,10 +1,9 @@
-import { View } from 'react-native'
 import styled from 'styled-components/native'
 import { ifProp } from 'styled-tools'
 
 import { baseTheme } from 'src/theme/base'
 
-export const StyledCheckbox = styled(View)<{
+export const StyledCheckbox = styled.View<{
   active: boolean
 }>`
   width: 22px;
@@ -21,7 +20,7 @@ export const StyledCheckbox = styled(View)<{
   border-radius: 11px;
 `
 
-export const StyledCheckboxInner = styled(View)<{ active: boolean }>`
+export const StyledCheckboxInner = styled.View<{ active: boolean }>`
   background-color: ${ifProp(
     'active',
     baseTheme.colors.primary,

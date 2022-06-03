@@ -3,12 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { BackButton } from 'src/components/atoms/backButton'
 import { StyledText } from 'src/components/atoms/text'
-import { useAlertContext } from 'src/modules/alert-context'
 import { Character } from 'src/modules/character'
 import { EpisodeDetail } from 'src/modules/episode'
 import { Location } from 'src/modules/location'
 import { baseTheme } from 'src/theme/base'
-import { Alert } from 'src/ui/alert'
 import { getDetailTitle } from 'src/utils/getDetailTitle'
 
 import { Filter } from '../modules/filter'
@@ -18,8 +16,6 @@ import { TabBar } from './tabbar'
 const Stack = createNativeStackNavigator<RootStack>()
 
 export const RootNavigation = () => {
-  const { visible } = useAlertContext()
-
   return (
     <React.Fragment>
       <Stack.Navigator
@@ -62,7 +58,6 @@ export const RootNavigation = () => {
           />
         </Stack.Group>
       </Stack.Navigator>
-      {visible && <Alert />}
     </React.Fragment>
   )
 }

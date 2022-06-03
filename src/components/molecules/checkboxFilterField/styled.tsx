@@ -1,10 +1,9 @@
-import { View } from 'react-native'
 import styled from 'styled-components/native'
 import { ifProp } from 'styled-tools'
 
 import { baseTheme } from 'src/theme/base'
 
-export const StyledCheckboxContainer = styled(View)<{ isLast: boolean }>`
+export const StyledCheckboxContainer = styled.View<{ isLast: boolean }>`
   flex-direction: row;
   height: 44px;
   padding-left: 18px;
@@ -14,7 +13,7 @@ export const StyledCheckboxContainer = styled(View)<{ isLast: boolean }>`
   margin-bottom: ${ifProp('isLast', '30px', '0')};
 `
 
-export const CheckboxTitle = styled(View)<{
+export const CheckboxTitle = styled.View<{
   isLast: boolean
 }>`
   border-bottom-color: ${baseTheme.colors.basic.line};

@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { RootNavigation } from 'src/navigation/root'
 
-import { AlertProvider } from './modules/alert-context'
 import { FilterContextProvider } from './modules/filter-context'
 
 const client = new ApolloClient({
@@ -61,13 +60,11 @@ const client = new ApolloClient({
 export const App = () => {
   return (
     <ApolloProvider client={client}>
-      <AlertProvider>
-        <FilterContextProvider>
-          <NavigationContainer>
-            <RootNavigation />
-          </NavigationContainer>
-        </FilterContextProvider>
-      </AlertProvider>
+      <FilterContextProvider>
+        <NavigationContainer>
+          <RootNavigation />
+        </NavigationContainer>
+      </FilterContextProvider>
     </ApolloProvider>
   )
 }
