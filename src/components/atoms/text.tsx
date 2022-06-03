@@ -11,7 +11,9 @@ interface StyledTextProps {
 }
 
 export const StyledText = styled(Text)<StyledTextProps>`
+  // !!! FIXME: Добавить дефолтный size !!!
   font-size: ${({ size }) => size + 'px'};
+  
   color: ${({ color }) => (color ? color : baseTheme.colors.basic.black)};
   font-family: ${({ weight }) =>
     weight

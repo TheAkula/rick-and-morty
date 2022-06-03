@@ -11,6 +11,9 @@ import {
 import { FilterRoutes, useNavigation } from 'src/types/filterNavigation'
 
 import ArrowImage from '../../../../assets/images/icons/arrow-right.svg'
+// !!! FIXME: Настроить алиасы !!!
+
+
 import {
   ArrowContainer,
   StyledFieldInfoItem,

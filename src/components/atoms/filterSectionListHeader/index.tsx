@@ -5,6 +5,7 @@ import { baseTheme } from 'src/theme/base'
 
 import { StyledFilterSectionListHeader } from './styled'
 
+// !!! FIXME: Вынести пропсы в интерфейс !!!
 export const FilterSectionListHeader = ({ title }: { title: string }) => {
   return (
     <StyledFilterSectionListHeader>

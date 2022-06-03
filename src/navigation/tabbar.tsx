@@ -44,7 +44,7 @@ export const TabBar = () => {
         backgroundColor: baseTheme.colors.basic.white,
       }}
       screenOptions={{
-        header: (props) => <Header {...props} />,
+        header: Header,
         tabBarStyle: {
           shadowColor: 'transparent',
           backgroundColor: baseTheme.colors.basic.headerBg,
@@ -62,6 +62,7 @@ export const TabBar = () => {
         component={CharactersScreen}
         options={{
           title: 'Character',
+          // !!! FIXME: Лучше прокинуть пропсы с цветами в SVGшки, чтобы избежать ререндера компоненты !!!
           tabBarIcon: ({ focused }) =>
             focused ? (
               <View>
